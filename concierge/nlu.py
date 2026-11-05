@@ -38,6 +38,7 @@ INTENT_EXAMPLES: dict[str, list[str]] = {
         "can you do a chargeback", "this payment wasn't me", "the seller won't respond and I want my money back",
         "my parcel hasn't turned up and the shop is ignoring me", "the goods were damaged when they arrived",
         "the merchant refused to refund me so I want to dispute it", "the host won't give my money back after I cancelled",
+        "I've never been a member there", "this payment on my statement isn't mine", "I've never shopped at this place",
     ],
     "scam": [
         "I transferred money to someone who said they were from the tax office", "I think I've been scammed",
@@ -90,6 +91,7 @@ INTENT_EXAMPLES: dict[str, list[str]] = {
 
 DISPUTE_TYPE_EXAMPLES: dict[str, list[str]] = {
     "unauthorised": ["I never made this", "someone used my card", "it wasn't me", "I don't recognise it", "my card was stolen",
+                     "fraud on my card", "I've never been there", "fraudulent transaction",
                      "I've never shopped there", "fraudulent charge on my card", "not authorised by me", "never been a member there"],
     "not_received": ["it never arrived", "I never received it", "hasn't shown up", "the parcel never came", "still waiting for delivery",
                      "never got the order"],
@@ -164,7 +166,24 @@ class KNN:
 INTENT_KNN = KNN(INTENT_EXAMPLES)
 DISPUTE_KNN = KNN(DISPUTE_TYPE_EXAMPLES)
 MIN_CONFIDENCE = 0.20
+
+# Unambiguous words get a small prior on top of the classifier (hybrid lexicon + kNN). Found
+# necessary in the shadow replay: "I need to dispute the $6,200 Northside purchase..." scored
+# below the confidence floor because merchant and amount tokens diluted the vector.
+KEYWORD_PRIORS: list[tuple[str, re.Pattern, float]] = [
+    ("dispute", re.compile(r"\b(dispute|chargeback|charge ?back|double[- ]charged?|charged (me )?twice|duplicate)\b", re.I), 0.10),
+    ("dispute_status", re.compile(r"\b(update|status|progress|up to|news|sorted|resolved)\b.{0,40}\b(dispute|claim|case)\b"
+                                  r"|\b(dispute|claim|case)\b.{0,40}\b(update|status|progress|up to|sorted|resolved)\b", re.I), 0.20),
+    ("scam", re.compile(r"\bscam", re.I), 0.10),
+    ("complaint", re.compile(r"\b(ombudsman|afca|formal complaint)\b", re.I), 0.10),
+]
+# A refund/waiver needs a request verb. "What's the late payment fee?" is a question, not a request
+# (the replay found it being "refunded" after the customer said yes to the offer).
+REQUEST_VERB = re.compile(r"\b(refund\w*|waive\w*|revers\w*|remov\w*|take (it |that |the \w+ )?off|taken off|credit\w*|"
+                          r"get (it |that |the \w+ )?back|give (it )?back|have it back|money back)\b", re.I)
 MIN_MARGIN = 0.015
+QUESTION = re.compile(r"^\s*(what|what's|how much|how long|how do|when|do you|does it|is there|are there)\b|\?\s*$", re.I)
+COST_OR_TIME = re.compile(r"\b(fees?|charges?|cost|costs|price|how long|how much|take to)\b", re.I)
 
 FEE_HINTS = {
     "overseas_fee": re.compile(r"overseas|international|foreign|currency|abroad|\btrip\b", re.I),
@@ -192,8 +211,17 @@ class Understanding:
 
 def understand(text: str, session_customer: str) -> Understanding:
     ranked = INTENT_KNN.scores(text)
+    boosts = {label: w for label, pat, w in KEYWORD_PRIORS if pat.search(text)}
+    if not REQUEST_VERB.search(text):
+        boosts["fee_refund"] = boosts.get("fee_refund", 0.0) - 0.25
+        # A question about what something costs or how long it takes is an information request.
+        if QUESTION.search(text) and COST_OR_TIME.search(text):
+            boosts["info"] = boosts.get("info", 0.0) + 0.25
+    ranked = sorted(((k, v + boosts.get(k, 0.0)) for k, v in ranked), key=lambda x: -x[1])
     (top, s1), (_, s2) = ranked[0], ranked[1]
     intent = top if (s1 >= MIN_CONFIDENCE and s1 - s2 >= MIN_MARGIN) else "unknown"
+    if intent == "info" and not (QUESTION.search(text) or re.search(r"\b(tell me|explain|wondering)\b", text, re.I)):
+        intent = "unknown"  # only answer questions with policy facts; a statement gets a clarifying question
     u = Understanding(intent=intent, confidence=round(s1, 3), ranked=[(k, round(v, 3)) for k, v in ranked[:3]])
     u.amounts = [float((a or b).replace(",", "")) for a, b in AMOUNT.findall(text)]
     if intent in ("dispute", "scam"):
@@ -206,3 +234,13 @@ def understand(text: str, session_customer: str) -> Understanding:
     refs = [r for r in CUSTOMER_REF.findall(text) if r != session_customer]
     u.other_customer = refs[0] if refs else None
     return u
+
+
+def parse_contacted(reply: str) -> bool:
+    """Answer to "have you contacted the merchant?". 'yeah I emailed them, no reply' is a yes."""
+    if NOT_CONTACTED.search(reply):
+        return False
+    if CONTACTED.search(reply):
+        return True
+    from .workflows import is_affirmative
+    return is_affirmative(reply)

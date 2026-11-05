@@ -1,0 +1,401 @@
+ticket_id,created_at,channel,customer_id,message,true_type,txn_id,human_resolution,policy_correct_resolution,seeded_human_error,handle_minutes,facts
+WM-10000,2026-10-26,app,C001,"fraud on my card - QuickBite Delivery $42.10, never been there",dispute_unauthorised,T1003,open_dispute,open_dispute,0,18,
+WM-10001,2026-09-12,chat,C001,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,8,
+WM-10002,2026-10-20,chat,C009,Please refund the $80.00 dishonour fee on our business account.,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,7,
+WM-10003,2026-10-30,app,C001,Could you refund the overseas transaction fee please? It was a one-off.,fee_refund_ok,T1001,refund_fee,refund_fee,0,5,confirms=True
+WM-10004,2026-10-20,app,C009,"I can't log in to the app, it says my password is wrong",oos_app_login,,human:app_access,human:app_access,0,9,
+WM-10005,2026-10-27,app,C003,Can I get the late payment fee refunded?,fee_refund_collections,T3001,refund_fee,decline:FEE-4,1,10,
+WM-10006,2026-09-11,email,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,3,confirms=True
+WM-10007,2026-10-04,chat,C001,"My Bali Surf Co purchase ($114.00) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T1005,open_dispute,open_dispute,0,17,contacted_merchant=True
+WM-10008,2026-09-08,email,C010,"I'm struggling to pay my card this month, what can I do?",hardship,,escalate:hardship,escalate:hardship,0,18,
+WM-10009,2026-09-03,email,C008,any update on my dispute please,dispute_status,T8001,inform,inform,0,4,
+WM-10010,2026-09-21,app,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,3,confirms=True
+WM-10011,2026-08-11,chat,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10012,2026-09-16,email,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,8,confirms=True
+WM-10013,2026-09-29,chat,C002,I'd like the $15.00 late payment fee refunded,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,7,
+WM-10014,2026-09-02,chat,C005,I want to dispute a charge on my card.,verification_blocked,,escalate:verification,escalate:verification,0,11,
+WM-10015,2026-09-30,email,C001,"fraud on my card - QuickBite Delivery $42.10, never been there",dispute_unauthorised,T1003,open_dispute,open_dispute,0,17,
+WM-10016,2026-10-13,chat,C010,Please close my account.,oos_close_account,,human:account_closure,human:account_closure,0,10,
+WM-10017,2026-10-17,email,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,9,contacted_merchant=True
+WM-10018,2026-08-31,app,C008,What's the status of my GymCo dispute?,dispute_status,T8001,inform,inform,0,3,
+WM-10019,2026-10-22,email,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,4,
+WM-10020,2026-10-09,email,C003,I want to make a formal complaint.,complaint,,escalate:complaints,escalate:complaints,0,20,
+WM-10021,2026-09-19,app,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10022,2026-10-03,email,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,5,confirms=True
+WM-10023,2026-09-26,chat,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,5,confirms=True
+WM-10024,2026-08-08,chat,C002,please reverse my late payment fee,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,6,
+WM-10025,2026-11-01,app,C009,Can I get a credit limit increase?,oos_credit_limit,,human:credit_limit,human:credit_limit,0,12,
+WM-10026,2026-10-02,app,C002,I don't recognise a FitLife Gym charge of $59.00.,dispute_unauthorised,T2002,open_dispute,open_dispute,0,13,
+WM-10027,2026-09-23,chat,C010,I ordered a card 10 days ago and nothing yet,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,10,
+WM-10028,2026-10-06,chat,C002,My partner takes my money and I'm scared to say anything.,vulnerability,,escalate:care,escalate:care,0,23,
+WM-10029,2026-10-11,app,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10030,2026-09-19,chat,C009,I'd like to raise my card limit,oos_credit_limit,,human:credit_limit,human:credit_limit,0,12,
+WM-10031,2026-08-18,chat,C003,Can I get the late payment fee refunded?,fee_refund_collections,T3001,decline:FEE-4,decline:FEE-4,0,8,
+WM-10032,2026-10-20,email,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,9,contacted_merchant=True
+WM-10033,2026-09-23,chat,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,5,contacted_merchant=True
+WM-10034,2026-10-25,chat,C010,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,10,
+WM-10035,2026-08-20,email,C002,please reverse my late payment fee,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,8,
+WM-10036,2026-10-19,chat,C001,Can I talk to a real person?,human_request,,escalate:general,escalate:general,0,8,
+WM-10037,2026-10-11,chat,C010,put me through to a human please,human_request,,escalate:general,escalate:general,0,5,
+WM-10038,2026-08-21,email,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10039,2026-08-30,email,C002,I'd like the $15.00 late payment fee refunded,fee_refund_repeat,T2001,decline:FEE-2,decline:FEE-2,0,9,
+WM-10040,2026-08-29,app,C010,"My new card still hasn't arrived, it's been two weeks.",oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,11,
+WM-10041,2026-09-05,app,C003,Take the late payment fee off please.,fee_refund_collections,T3001,refund_fee,decline:FEE-4,1,7,
+WM-10042,2026-08-29,app,C001,How much is the overseas transaction fee?,info_fees,,inform,inform,0,2,
+WM-10043,2026-10-30,chat,C002,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,12,
+WM-10044,2026-08-18,app,C008,What's the status of my GymCo dispute?,dispute_status,T8001,inform,inform,0,3,
+WM-10045,2026-10-04,app,C002,"fraud on my card - FitLife Gym $59.00, never been there",dispute_unauthorised,T2002,open_dispute,open_dispute,0,13,
+WM-10046,2026-10-10,email,C009,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,12,
+WM-10047,2026-10-08,email,C001,"I want to dispute the SoundWave Online charge, the order never came.",dispute_merchant_not_contacted,T1004,decline:DSP-3,decline:DSP-3,0,9,contacted_merchant=False
+WM-10048,2026-09-19,chat,C001,I ordered a card 10 days ago and nothing yet,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,9,
+WM-10049,2026-10-15,chat,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,7,
+WM-10050,2026-09-12,chat,C002,please reverse my late payment fee,fee_refund_repeat,T2001,decline:FEE-2,decline:FEE-2,0,7,
+WM-10051,2026-11-02,email,C010,StreamFlix refused to refund me for an order that never came. I'd like a chargeback.,dispute_merchant_ok,T10002,open_dispute,open_dispute,0,16,contacted_merchant=True
+WM-10052,2026-10-27,chat,C002,Someone has used my card at FitLife Gym!,dispute_unauthorised,T2002,open_dispute,open_dispute,0,20,
+WM-10053,2026-10-30,chat,C006,Can I get a credit limit increase?,oos_credit_limit,,human:credit_limit,human:credit_limit,0,12,
+WM-10054,2026-08-10,email,C001,"fraud on my card - QuickBite Delivery $42.10, never been there",dispute_unauthorised,T1003,open_dispute,open_dispute,0,10,
+WM-10055,2026-09-30,chat,C008,has my GymCo claim been sorted yet,dispute_status,T8001,inform,inform,0,5,
+WM-10056,2026-10-01,chat,C001,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,6,
+WM-10057,2026-10-20,email,C001,Could you refund the overseas transaction fee please? It was a one-off.,fee_refund_ok,T1001,refund_fee,refund_fee,0,4,confirms=True
+WM-10058,2026-10-30,app,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,5,confirms=True
+WM-10059,2026-09-26,email,C009,Can I get a credit limit increase?,oos_credit_limit,,human:credit_limit,human:credit_limit,0,5,
+WM-10060,2026-08-10,chat,C008,any update on my dispute please,dispute_status,T8001,inform,inform,0,4,
+WM-10061,2026-09-01,app,C004,Please close my account.,oos_close_account,,human:account_closure,human:account_closure,0,14,
+WM-10062,2026-10-22,email,C010,Please close my account.,oos_close_account,,human:account_closure,human:account_closure,0,8,
+WM-10063,2026-10-06,email,C009,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,8,
+WM-10064,2026-10-29,chat,C010,refund my late payment fee from August please,fee_refund_old,T10001,decline:FEE-5,decline:FEE-5,0,8,
+WM-10065,2026-08-11,email,C009,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,11,
+WM-10066,2026-09-28,chat,C009,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,9,
+WM-10067,2026-08-26,email,C010,Can you get my $16.99 back from StreamFlix? It never arrived.,dispute_merchant_not_contacted,T10002,decline:DSP-3,decline:DSP-3,0,8,contacted_merchant=False
+WM-10068,2026-11-04,email,C009,Please refund the $80.00 dishonour fee on our business account.,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,7,
+WM-10069,2026-11-04,chat,C008,What's the status of my GymCo dispute?,dispute_status,T8001,inform,inform,0,5,
+WM-10070,2026-10-30,email,C001,QuickBite Delivery took $42.10 from my card and it wasn't me,dispute_unauthorised,T1003,open_dispute,open_dispute,0,17,
+WM-10071,2026-09-02,chat,C009,Can the dishonour fee of $80.00 be reversed?,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,9,
+WM-10072,2026-08-31,email,C002,FitLife Gym took $59.00 from my card and it wasn't me,dispute_unauthorised,T2002,open_dispute,open_dispute,0,13,
+WM-10073,2026-08-09,chat,C002,please reverse my late payment fee,fee_refund_repeat,T2001,decline:FEE-2,decline:FEE-2,0,4,
+WM-10074,2026-10-22,email,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10075,2026-09-07,chat,C003,"This is ridiculous, I'm going to the ombudsman.",complaint,,escalate:complaints,escalate:complaints,0,13,
+WM-10076,2026-09-05,email,C004,Can you refund the fee on my account?,verification_blocked,,escalate:verification,escalate:verification,0,12,
+WM-10077,2026-09-07,email,C009,Please refund the $80.00 dishonour fee on our business account.,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,5,
+WM-10078,2026-09-29,chat,C002,"I can't log in to the app, it says my password is wrong",oos_app_login,,human:app_access,human:app_access,0,8,
+WM-10079,2026-08-08,email,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,5,confirms=True
+WM-10080,2026-09-03,email,C003,I want to make a formal complaint.,complaint,,escalate:complaints,escalate:complaints,0,20,
+WM-10081,2026-09-29,email,C008,refund my overseas transaction fee from August please,fee_refund_old,T8002,decline:FEE-5,decline:FEE-5,0,6,
+WM-10082,2026-10-25,email,C006,"Staywell Stays charged me twice, one is still pending, can you remove the duplicate?",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,8,
+WM-10083,2026-10-09,chat,C006,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,9,
+WM-10084,2026-09-19,chat,C001,"Money's really tight, I don't think I can afford my repayment.",hardship,,escalate:hardship,escalate:hardship,0,14,
+WM-10085,2026-09-03,email,C001,Someone has used my card at QuickBite Delivery!,dispute_unauthorised,T1003,open_dispute,open_dispute,0,11,
+WM-10086,2026-09-14,email,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10087,2026-09-22,email,C001,I've contacted SoundWave Online twice about my $249.00 order and they've ignored me. I want to dispute it.,dispute_merchant_ok,T1004,open_dispute,open_dispute,0,11,contacted_merchant=True
+WM-10088,2026-09-28,email,C001,Could you refund the overseas transaction fee please? It was a one-off.,fee_refund_ok,T1001,refund_fee,refund_fee,0,5,confirms=True
+WM-10089,2026-09-30,chat,C004,I want to close my account and transfer my balance out,oos_close_account,,human:account_closure,human:account_closure,0,12,
+WM-10090,2026-10-16,chat,C001,Someone has used my card at QuickBite Delivery!,dispute_unauthorised,T1003,open_dispute,open_dispute,0,18,
+WM-10091,2026-08-16,email,C001,"fraud on my card - Greengrocer Lane $63.20, never been there",dispute_unauthorised,T1006,open_dispute,open_dispute,0,13,
+WM-10092,2026-09-13,email,C001,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,6,
+WM-10093,2026-08-26,chat,C009,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,10,
+WM-10094,2026-10-03,email,C002,I'd like the $15.00 late payment fee refunded,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,6,
+WM-10095,2026-10-15,chat,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,open_dispute,decline:DSP-2,1,9,contacted_merchant=True
+WM-10096,2026-09-23,email,C008,"There's an old overseas transaction fee on my account from a while back, can I have it refunded?",fee_refund_old,T8002,decline:FEE-5,decline:FEE-5,0,4,
+WM-10097,2026-09-25,chat,C009,Can the dishonour fee of $80.00 be reversed?,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,10,
+WM-10098,2026-09-13,email,C001,"My Bali Surf Co purchase ($114.00) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T1005,open_dispute,open_dispute,0,11,contacted_merchant=True
+WM-10099,2026-08-23,email,C010,"My StreamFlix purchase ($16.99) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T10002,open_dispute,open_dispute,0,17,contacted_merchant=True
+WM-10100,2026-10-04,email,C002,Can you waive the late payment fee again please?,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,5,
+WM-10101,2026-09-05,app,C006,Can I get a credit limit increase?,oos_credit_limit,,human:credit_limit,human:credit_limit,0,14,
+WM-10102,2026-08-29,email,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,9,contacted_merchant=True
+WM-10103,2026-08-09,chat,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10104,2026-10-30,chat,C009,Can I get a credit limit increase?,oos_credit_limit,,human:credit_limit,human:credit_limit,0,12,
+WM-10105,2026-08-29,email,C007,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,6,
+WM-10106,2026-08-29,app,C001,What's the late payment fee?,info_fees,,inform,inform,0,3,
+WM-10107,2026-09-07,email,C001,"My new card still hasn't arrived, it's been two weeks.",oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,11,
+WM-10108,2026-08-26,chat,C006,I'd like to raise my card limit,oos_credit_limit,,human:credit_limit,human:credit_limit,0,15,
+WM-10109,2026-08-10,email,C010,Can I talk to a real person?,human_request,,escalate:general,escalate:general,0,5,
+WM-10110,2026-10-06,email,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10111,2026-09-28,app,C010,"I want to dispute the StreamFlix charge, the order never came.",dispute_merchant_not_contacted,T10002,open_dispute,decline:DSP-3,1,8,contacted_merchant=False
+WM-10112,2026-10-11,chat,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,5,confirms=True
+WM-10113,2026-10-12,chat,C002,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,11,
+WM-10114,2026-10-29,chat,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,11,contacted_merchant=True
+WM-10115,2026-09-25,chat,C001,"I want to dispute the SoundWave Online charge, the order never came.",dispute_merchant_not_contacted,T1004,decline:DSP-3,decline:DSP-3,0,8,contacted_merchant=False
+WM-10116,2026-08-13,app,C004,I want to close my account and transfer my balance out,oos_close_account,,human:account_closure,human:account_closure,0,10,
+WM-10117,2026-09-09,chat,C001,put me through to a human please,human_request,,escalate:general,escalate:general,0,5,
+WM-10118,2026-09-12,chat,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,4,confirms=True
+WM-10119,2026-09-05,chat,C010,I've contacted StreamFlix twice about my $16.99 order and they've ignored me. I want to dispute it.,dispute_merchant_ok,T10002,open_dispute,open_dispute,0,13,contacted_merchant=True
+WM-10120,2026-09-05,chat,C007,"My PetPal Supplies purchase ($75.00) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T7003,open_dispute,open_dispute,0,13,contacted_merchant=True
+WM-10121,2026-09-06,chat,C009,I want to make a formal complaint.,complaint,,escalate:complaints,escalate:complaints,0,15,
+WM-10122,2026-10-27,app,C001,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,8,
+WM-10123,2026-08-08,email,C006,I'd like to raise my card limit,oos_credit_limit,,human:credit_limit,human:credit_limit,0,14,
+WM-10124,2026-08-20,chat,C007,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,8,
+WM-10125,2026-09-10,email,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,8,contacted_merchant=True
+WM-10126,2026-09-27,chat,C002,Can you waive the late payment fee again please?,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,6,
+WM-10127,2026-09-15,chat,C001,I don't recognise a Greengrocer Lane charge of $63.20.,dispute_unauthorised,T1006,open_dispute,open_dispute,0,12,
+WM-10128,2026-08-27,email,C009,Please refund the $80.00 dishonour fee on our business account.,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,10,
+WM-10129,2026-10-09,chat,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10130,2026-09-12,email,C010,"I want to dispute the StreamFlix charge, the order never came.",dispute_merchant_not_contacted,T10002,open_dispute,decline:DSP-3,1,6,contacted_merchant=False
+WM-10131,2026-08-24,email,C004,I want to dispute a charge on my card.,verification_blocked,,escalate:verification,escalate:verification,0,7,
+WM-10132,2026-10-12,chat,C010,"My StreamFlix purchase ($16.99) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T10002,open_dispute,open_dispute,0,15,contacted_merchant=True
+WM-10133,2026-10-03,chat,C001,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,8,
+WM-10134,2026-08-13,email,C008,has my GymCo claim been sorted yet,dispute_status,T8001,inform,inform,0,4,
+WM-10135,2026-10-30,email,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,8,contacted_merchant=True
+WM-10136,2026-08-22,chat,C009,Please refund the $80.00 dishonour fee on our business account.,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,11,
+WM-10137,2026-08-11,chat,C009,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,10,
+WM-10138,2026-09-22,chat,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,12,confirms=True
+WM-10139,2026-09-13,email,C001,Could you refund the overseas transaction fee please? It was a one-off.,fee_refund_ok,T1001,refund_fee,refund_fee,0,8,confirms=True
+WM-10140,2026-09-02,app,C003,Take the late payment fee off please.,fee_refund_collections,T3001,refund_fee,decline:FEE-4,1,5,
+WM-10141,2026-08-28,chat,C010,I ordered a card 10 days ago and nothing yet,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,9,
+WM-10142,2026-09-29,email,C001,put me through to a human please,human_request,,escalate:general,escalate:general,0,5,
+WM-10143,2026-09-19,chat,C005,I want to dispute a charge on my card.,verification_blocked,,escalate:verification,escalate:verification,0,10,
+WM-10144,2026-09-10,chat,C007,"My PetPal Supplies purchase ($75.00) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T7003,open_dispute,open_dispute,0,9,contacted_merchant=True
+WM-10145,2026-10-19,chat,C010,Can you get my $16.99 back from StreamFlix? It never arrived.,dispute_merchant_not_contacted,T10002,decline:DSP-3,decline:DSP-3,0,10,contacted_merchant=False
+WM-10146,2026-08-17,email,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10147,2026-10-27,chat,C001,Bali Surf Co refused to refund me for an order that never came. I'd like a chargeback.,dispute_merchant_ok,T1005,open_dispute,open_dispute,0,13,contacted_merchant=True
+WM-10148,2026-10-30,email,C001,I've contacted Bali Surf Co twice about my $114.00 order and they've ignored me. I want to dispute it.,dispute_merchant_ok,T1005,open_dispute,open_dispute,0,13,contacted_merchant=True
+WM-10149,2026-10-07,app,C003,I want to make a formal complaint.,complaint,,escalate:complaints,escalate:complaints,0,24,
+WM-10150,2026-10-08,chat,C001,I've contacted Bali Surf Co twice about my $114.00 order and they've ignored me. I want to dispute it.,dispute_merchant_ok,T1005,open_dispute,open_dispute,0,11,contacted_merchant=True
+WM-10151,2026-10-11,chat,C001,"My SoundWave Online purchase ($249.00) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T1004,open_dispute,open_dispute,0,18,contacted_merchant=True
+WM-10152,2026-10-20,email,C002,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,8,
+WM-10153,2026-10-04,email,C009,"This is ridiculous, I'm going to the ombudsman.",complaint,,escalate:complaints,escalate:complaints,0,15,
+WM-10154,2026-10-13,chat,C010,I've contacted StreamFlix twice about my $16.99 order and they've ignored me. I want to dispute it.,dispute_merchant_ok,T10002,open_dispute,open_dispute,0,26,contacted_merchant=True
+WM-10155,2026-09-05,email,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,6,
+WM-10156,2026-10-24,email,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,4,confirms=True
+WM-10157,2026-09-25,app,C001,Could you refund the overseas transaction fee please? It was a one-off.,fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10158,2026-10-27,app,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10159,2026-10-14,chat,C003,Can I get the late payment fee refunded?,fee_refund_collections,T3001,decline:FEE-4,decline:FEE-4,0,4,
+WM-10160,2026-08-18,email,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10161,2026-08-18,app,C001,Greengrocer Lane took $63.20 from my card and it wasn't me,dispute_unauthorised,T1006,open_dispute,open_dispute,0,12,
+WM-10162,2026-09-14,chat,C009,Please refund the $80.00 dishonour fee on our business account.,fee_refund_over_limit,T9001,refund_fee,escalate:team_lead,1,8,
+WM-10163,2026-10-02,chat,C001,Greengrocer Lane took $63.20 from my card and it wasn't me,dispute_unauthorised,T1006,open_dispute,open_dispute,0,12,
+WM-10164,2026-09-08,app,C001,I ordered a card 10 days ago and nothing yet,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,6,
+WM-10165,2026-09-15,email,C009,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,10,
+WM-10166,2026-10-25,email,C001,Greengrocer Lane took $63.20 from my card and it wasn't me,dispute_unauthorised,T1006,open_dispute,open_dispute,0,15,
+WM-10167,2026-08-22,email,C009,I'd like to raise my card limit,oos_credit_limit,,human:credit_limit,human:credit_limit,0,16,
+WM-10168,2026-08-18,email,C004,Can you refund the fee on my account?,verification_blocked,,escalate:verification,escalate:verification,0,8,
+WM-10169,2026-10-30,chat,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10170,2026-09-20,app,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10171,2026-09-05,chat,C001,"I'm struggling to pay my card this month, what can I do?",hardship,,escalate:hardship,escalate:hardship,0,27,
+WM-10172,2026-10-23,chat,C002,please reverse my late payment fee,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,5,
+WM-10173,2026-10-28,app,C006,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,6,
+WM-10174,2026-09-02,chat,C009,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,11,
+WM-10175,2026-10-15,chat,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10176,2026-08-12,chat,C001,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,8,
+WM-10177,2026-10-27,email,C006,My partner takes my money and I'm scared to say anything.,vulnerability,,escalate:care,escalate:care,0,34,
+WM-10178,2026-09-10,email,C009,I want to make a formal complaint.,complaint,,escalate:complaints,escalate:complaints,0,24,
+WM-10179,2026-10-31,chat,C003,Can I get the late payment fee refunded?,fee_refund_collections,T3001,refund_fee,decline:FEE-4,1,8,
+WM-10180,2026-10-01,app,C002,Someone has used my card at FitLife Gym!,dispute_unauthorised,T2002,open_dispute,open_dispute,0,12,
+WM-10181,2026-10-08,chat,C007,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,5,
+WM-10182,2026-10-05,chat,C002,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,15,
+WM-10183,2026-09-17,app,C001,Someone has used my card at Greengrocer Lane!,dispute_unauthorised,T1006,open_dispute,open_dispute,0,12,
+WM-10184,2026-10-06,app,C006,"Staywell Stays charged me twice, one is still pending, can you remove the duplicate?",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,8,
+WM-10185,2026-10-17,chat,C001,SoundWave Online refused to refund me for an order that never came. I'd like a chargeback.,dispute_merchant_ok,T1004,open_dispute,open_dispute,0,11,contacted_merchant=True
+WM-10186,2026-10-17,chat,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10187,2026-10-27,app,C003,I want to make a formal complaint.,complaint,,escalate:complaints,escalate:complaints,0,18,
+WM-10188,2026-09-16,chat,C004,Can you refund the fee on my account?,verification_blocked,,escalate:verification,escalate:verification,0,10,
+WM-10189,2026-10-19,chat,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10190,2026-09-22,email,C010,"My new card still hasn't arrived, it's been two weeks.",oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,9,
+WM-10191,2026-08-19,app,C001,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,9,
+WM-10192,2026-11-01,email,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,7,contacted_merchant=True
+WM-10193,2026-10-24,app,C006,"Staywell Stays charged me twice, one is still pending, can you remove the duplicate?",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,6,
+WM-10194,2026-10-10,email,C001,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,9,
+WM-10195,2026-10-12,email,C001,Could you refund the overseas transaction fee please? It was a one-off.,fee_refund_ok,T1001,refund_fee,refund_fee,0,2,confirms=True
+WM-10196,2026-10-15,email,C010,"I'm struggling to pay my card this month, what can I do?",hardship,,escalate:hardship,escalate:hardship,0,25,
+WM-10197,2026-10-25,email,C010,"There's an old late payment fee on my account from a while back, can I have it refunded?",fee_refund_old,T10001,decline:FEE-5,decline:FEE-5,0,3,
+WM-10198,2026-08-16,email,C010,I ordered a card 10 days ago and nothing yet,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,8,
+WM-10199,2026-11-01,email,C001,I've contacted SoundWave Online twice about my $249.00 order and they've ignored me. I want to dispute it.,dispute_merchant_ok,T1004,open_dispute,open_dispute,0,18,contacted_merchant=True
+WM-10200,2026-09-01,chat,C008,refund my overseas transaction fee from August please,fee_refund_old,T8002,decline:FEE-5,decline:FEE-5,0,4,
+WM-10201,2026-08-08,app,C009,Please refund the $80.00 dishonour fee on our business account.,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,12,
+WM-10202,2026-09-08,app,C009,"This is ridiculous, I'm going to the ombudsman.",complaint,,escalate:complaints,escalate:complaints,0,18,
+WM-10203,2026-09-06,chat,C010,"I want to dispute the StreamFlix charge, the order never came.",dispute_merchant_not_contacted,T10002,open_dispute,decline:DSP-3,1,7,contacted_merchant=False
+WM-10204,2026-08-17,chat,C008,any update on my dispute please,dispute_status,T8001,inform,inform,0,4,
+WM-10205,2026-10-11,email,C006,What's the late payment fee?,info_fees,,inform,inform,0,2,
+WM-10206,2026-10-22,chat,C004,Please close my account.,oos_close_account,,human:account_closure,human:account_closure,0,5,
+WM-10207,2026-10-10,chat,C010,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,13,
+WM-10208,2026-09-16,email,C003,"This is ridiculous, I'm going to the ombudsman.",complaint,,escalate:complaints,escalate:complaints,0,22,
+WM-10209,2026-08-16,email,C010,"My new card still hasn't arrived, it's been two weeks.",oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,9,
+WM-10210,2026-09-14,chat,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,6,
+WM-10211,2026-08-13,app,C010,"I want to dispute the StreamFlix charge, the order never came.",dispute_merchant_not_contacted,T10002,decline:DSP-3,decline:DSP-3,0,4,contacted_merchant=False
+WM-10212,2026-09-10,email,C002,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,11,
+WM-10213,2026-08-16,chat,C002,"I can't log in to the app, it says my password is wrong",oos_app_login,,human:app_access,human:app_access,0,15,
+WM-10214,2026-08-17,email,C001,"fraud on my card - Greengrocer Lane $63.20, never been there",dispute_unauthorised,T1006,open_dispute,open_dispute,0,9,
+WM-10215,2026-09-03,chat,C009,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,11,
+WM-10216,2026-10-10,app,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,4,confirms=True
+WM-10217,2026-08-15,email,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,8,
+WM-10218,2026-10-09,chat,C008,has my GymCo claim been sorted yet,dispute_status,T8001,inform,inform,0,3,
+WM-10219,2026-09-30,email,C002,please reverse my late payment fee,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,9,
+WM-10220,2026-09-12,email,C001,"My SoundWave Online purchase ($249.00) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T1004,open_dispute,open_dispute,0,13,contacted_merchant=True
+WM-10221,2026-09-15,email,C001,Greengrocer Lane took $63.20 from my card and it wasn't me,dispute_unauthorised,T1006,open_dispute,open_dispute,0,13,
+WM-10222,2026-08-15,chat,C010,"There's an old late payment fee on my account from a while back, can I have it refunded?",fee_refund_old,T10001,decline:FEE-5,decline:FEE-5,0,4,
+WM-10223,2026-09-13,email,C010,refund my late payment fee from August please,fee_refund_old,T10001,decline:FEE-5,decline:FEE-5,0,6,
+WM-10224,2026-10-06,email,C004,I want to close my account and transfer my balance out,oos_close_account,,human:account_closure,human:account_closure,0,9,
+WM-10225,2026-09-30,email,C004,I want to close my account and transfer my balance out,oos_close_account,,human:account_closure,human:account_closure,0,6,
+WM-10226,2026-09-11,app,C009,Can the dishonour fee of $80.00 be reversed?,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,7,
+WM-10227,2026-08-24,email,C010,I've contacted StreamFlix twice about my $16.99 order and they've ignored me. I want to dispute it.,dispute_merchant_ok,T10002,open_dispute,open_dispute,0,11,contacted_merchant=True
+WM-10228,2026-08-15,app,C001,I ordered a card 10 days ago and nothing yet,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,9,
+WM-10229,2026-08-22,chat,C009,I'd like to raise my card limit,oos_credit_limit,,human:credit_limit,human:credit_limit,0,12,
+WM-10230,2026-10-16,chat,C002,"I can't log in to the app, it says my password is wrong",oos_app_login,,human:app_access,human:app_access,0,15,
+WM-10231,2026-08-26,email,C002,please reverse my late payment fee,fee_refund_repeat,T2001,decline:FEE-2,decline:FEE-2,0,5,
+WM-10232,2026-09-09,chat,C003,Take the late payment fee off please.,fee_refund_collections,T3001,decline:FEE-4,decline:FEE-4,0,6,
+WM-10233,2026-10-28,email,C009,Can the dishonour fee of $80.00 be reversed?,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,8,
+WM-10234,2026-10-14,app,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,open_dispute,decline:DSP-4,1,4,
+WM-10235,2026-09-02,email,C002,I'd like the $15.00 late payment fee refunded,fee_refund_repeat,T2001,decline:FEE-2,decline:FEE-2,0,5,
+WM-10236,2026-08-10,chat,C009,"I can't log in to the app, it says my password is wrong",oos_app_login,,human:app_access,human:app_access,0,12,
+WM-10237,2026-09-23,chat,C003,I want to make a formal complaint.,complaint,,escalate:complaints,escalate:complaints,0,22,
+WM-10238,2026-09-12,chat,C008,What's the status of my GymCo dispute?,dispute_status,T8001,inform,inform,0,3,
+WM-10239,2026-10-09,email,C007,PetPal Supplies refused to refund me for an order that never came. I'd like a chargeback.,dispute_merchant_ok,T7003,open_dispute,open_dispute,0,21,contacted_merchant=True
+WM-10240,2026-09-28,email,C010,Can you get my $16.99 back from StreamFlix? It never arrived.,dispute_merchant_not_contacted,T10002,decline:DSP-3,decline:DSP-3,0,7,contacted_merchant=False
+WM-10241,2026-08-13,email,C001,Someone has used my card at Greengrocer Lane!,dispute_unauthorised,T1006,open_dispute,open_dispute,0,17,
+WM-10242,2026-09-27,chat,C006,"My new card still hasn't arrived, it's been two weeks.",oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,6,
+WM-10243,2026-09-14,app,C001,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,7,
+WM-10244,2026-10-30,chat,C003,"I'm struggling to pay my card this month, what can I do?",hardship,,decline,escalate:hardship,1,22,
+WM-10245,2026-08-16,app,C004,I want to dispute a charge on my card.,verification_blocked,,escalate:verification,escalate:verification,0,7,
+WM-10246,2026-08-15,email,C002,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,10,
+WM-10247,2026-08-13,chat,C010,put me through to a human please,human_request,,escalate:general,escalate:general,0,4,
+WM-10248,2026-10-02,email,C001,I've contacted Bali Surf Co twice about my $114.00 order and they've ignored me. I want to dispute it.,dispute_merchant_ok,T1005,open_dispute,open_dispute,0,15,contacted_merchant=True
+WM-10249,2026-10-30,chat,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10250,2026-09-14,email,C006,I ordered a card 10 days ago and nothing yet,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,12,
+WM-10251,2026-09-13,app,C010,I've lost my job and I can't make my repayments.,hardship,,escalate:hardship,escalate:hardship,0,23,
+WM-10252,2026-08-16,chat,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10253,2026-10-19,email,C010,Can I talk to a real person?,human_request,,escalate:general,escalate:general,0,5,
+WM-10254,2026-10-12,chat,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,4,confirms=True
+WM-10255,2026-09-28,app,C001,what fees do you charge for using my card abroad,info_fees,,inform,inform,0,4,
+WM-10256,2026-10-03,chat,C006,what fees do you charge for using my card abroad,info_fees,,inform,inform,0,3,
+WM-10257,2026-08-20,chat,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10258,2026-08-23,email,C009,Can I get a credit limit increase?,oos_credit_limit,,human:credit_limit,human:credit_limit,0,10,
+WM-10259,2026-10-15,email,C006,I'd like to raise my card limit,oos_credit_limit,,human:credit_limit,human:credit_limit,0,12,
+WM-10260,2026-08-24,email,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,8,contacted_merchant=True
+WM-10261,2026-08-20,email,C009,Can I get a credit limit increase?,oos_credit_limit,,human:credit_limit,human:credit_limit,0,13,
+WM-10262,2026-09-17,app,C001,"I'm struggling to pay my card this month, what can I do?",hardship,,escalate:hardship,escalate:hardship,0,20,
+WM-10263,2026-09-11,chat,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,open_dispute,decline:DSP-4,1,5,
+WM-10264,2026-08-23,chat,C001,"I'm struggling to pay my card this month, what can I do?",hardship,,escalate:hardship,escalate:hardship,0,19,
+WM-10265,2026-10-25,app,C010,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,13,
+WM-10266,2026-10-06,email,C007,"I sent $2,000.00 to someone pretending to be from my bank. I think it was a scam.",scam_transfer,T7002,escalate:scams,escalate:scams,0,18,
+WM-10267,2026-11-03,email,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,5,
+WM-10268,2026-10-06,email,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,3,
+WM-10269,2026-10-10,chat,C009,"I can't log in to the app, it says my password is wrong",oos_app_login,,human:app_access,human:app_access,0,8,
+WM-10270,2026-09-28,email,C010,"There's an old late payment fee on my account from a while back, can I have it refunded?",fee_refund_old,T10001,decline:FEE-5,decline:FEE-5,0,5,
+WM-10271,2026-09-02,email,C001,"My new card still hasn't arrived, it's been two weeks.",oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,8,
+WM-10272,2026-10-25,chat,C009,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,11,
+WM-10273,2026-10-09,app,C002,I don't recognise a FitLife Gym charge of $59.00.,dispute_unauthorised,T2002,open_dispute,open_dispute,0,15,
+WM-10274,2026-09-30,email,C007,I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.,dispute_old,T7001,decline:DSP-2,decline:DSP-2,0,10,contacted_merchant=True
+WM-10275,2026-10-31,email,C010,I've lost my job and I can't make my repayments.,hardship,,escalate:hardship,escalate:hardship,0,23,
+WM-10276,2026-10-29,chat,C010,refund my late payment fee from August please,fee_refund_old,T10001,refund_fee,decline:FEE-5,1,3,
+WM-10277,2026-10-24,email,C006,"Double charge from Staywell Stays for $890.00, one hasn't cleared yet",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,5,
+WM-10278,2026-08-11,app,C001,I don't recognise a QuickBite Delivery charge of $42.10.,dispute_unauthorised,T1003,open_dispute,open_dispute,0,11,
+WM-10279,2026-10-31,email,C002,please reverse my late payment fee,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,8,
+WM-10280,2026-10-29,email,C006,Can I get a credit limit increase?,oos_credit_limit,,human:credit_limit,human:credit_limit,0,13,
+WM-10281,2026-09-25,chat,C001,Can I talk to a real person?,human_request,,escalate:general,escalate:general,0,3,
+WM-10282,2026-10-22,email,C007,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,6,
+WM-10283,2026-10-05,chat,C002,I'd like the $15.00 late payment fee refunded,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,8,
+WM-10284,2026-10-11,chat,C001,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,9,
+WM-10285,2026-10-23,email,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,8,confirms=True
+WM-10286,2026-09-24,chat,C002,"I can't log in to the app, it says my password is wrong",oos_app_login,,human:app_access,human:app_access,0,7,
+WM-10287,2026-09-08,app,C002,please reverse my late payment fee,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,7,
+WM-10288,2026-09-13,chat,C009,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,12,
+WM-10289,2026-10-22,email,C009,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,13,
+WM-10290,2026-08-31,chat,C006,"Staywell Stays charged me twice, one is still pending, can you remove the duplicate?",dispute_pending,T6002,open_dispute,decline:DSP-4,1,4,
+WM-10291,2026-10-10,email,C007,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,5,
+WM-10292,2026-10-23,email,C010,"I want to dispute the StreamFlix charge, the order never came.",dispute_merchant_not_contacted,T10002,decline:DSP-3,decline:DSP-3,0,7,contacted_merchant=False
+WM-10293,2026-11-02,email,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,9,confirms=True
+WM-10294,2026-11-04,app,C006,I ordered a card 10 days ago and nothing yet,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,9,
+WM-10295,2026-10-12,chat,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10296,2026-08-20,chat,C002,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,14,
+WM-10297,2026-08-18,chat,C006,What's the late payment fee?,info_fees,,inform,inform,0,2,
+WM-10298,2026-08-30,email,C001,I've lost my job and I can't make my repayments.,hardship,,decline,escalate:hardship,1,26,
+WM-10299,2026-08-15,email,C008,any update on my dispute please,dispute_status,T8001,inform,inform,0,2,
+WM-10300,2026-08-11,email,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10301,2026-08-23,app,C004,Please close my account.,oos_close_account,,human:account_closure,human:account_closure,0,13,
+WM-10302,2026-08-30,chat,C009,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,14,
+WM-10303,2026-08-23,chat,C006,I ordered a card 10 days ago and nothing yet,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,11,
+WM-10304,2026-11-01,app,C001,"fraud on my card - QuickBite Delivery $42.10, never been there",dispute_unauthorised,T1003,open_dispute,open_dispute,0,15,
+WM-10305,2026-10-14,chat,C009,Please refund the $80.00 dishonour fee on our business account.,fee_refund_over_limit,T9001,escalate:team_lead,escalate:team_lead,0,8,
+WM-10306,2026-08-07,chat,C002,I don't recognise a FitLife Gym charge of $59.00.,dispute_unauthorised,T2002,open_dispute,open_dispute,0,14,
+WM-10307,2026-10-22,email,C009,I want to make a formal complaint.,complaint,,escalate:complaints,escalate:complaints,0,27,
+WM-10308,2026-09-06,email,C002,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,7,
+WM-10309,2026-08-27,app,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,5,confirms=True
+WM-10310,2026-09-06,email,C010,"There's an old late payment fee on my account from a while back, can I have it refunded?",fee_refund_old,T10001,decline:FEE-5,decline:FEE-5,0,7,
+WM-10311,2026-08-19,app,C007,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,10,
+WM-10312,2026-10-05,email,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,5,confirms=True
+WM-10313,2026-10-29,email,C007,"I was tricked into transferring $2,000.00 by a caller claiming to be the police.",scam_transfer,T7002,escalate:scams,escalate:scams,0,13,
+WM-10314,2026-08-12,chat,C008,What's the status of my GymCo dispute?,dispute_status,T8001,inform,inform,0,3,
+WM-10315,2026-11-02,chat,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10316,2026-10-30,chat,C002,I'd like the $15.00 late payment fee refunded,fee_refund_repeat,T2001,decline:FEE-2,decline:FEE-2,0,9,
+WM-10317,2026-10-03,chat,C007,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,5,
+WM-10318,2026-09-29,chat,C008,What's the status of my GymCo dispute?,dispute_status,T8001,inform,inform,0,4,
+WM-10319,2026-08-28,chat,C001,Could you refund the overseas transaction fee please? It was a one-off.,fee_refund_ok,T1001,refund_fee,refund_fee,0,8,confirms=True
+WM-10320,2026-08-23,email,C001,Can you get my $249.00 back from SoundWave Online? It never arrived.,dispute_merchant_not_contacted,T1004,decline:DSP-3,decline:DSP-3,0,8,contacted_merchant=False
+WM-10321,2026-08-24,chat,C005,I want to dispute a charge on my card.,verification_blocked,,escalate:verification,escalate:verification,0,14,
+WM-10322,2026-08-26,email,C010,put me through to a human please,human_request,,escalate:general,escalate:general,0,4,
+WM-10323,2026-08-31,app,C001,Someone has used my card at QuickBite Delivery!,dispute_unauthorised,T1003,open_dispute,open_dispute,0,11,
+WM-10324,2026-10-15,chat,C007,"My PetPal Supplies purchase ($75.00) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T7003,open_dispute,open_dispute,0,14,contacted_merchant=True
+WM-10325,2026-11-02,chat,C001,Someone has used my card at QuickBite Delivery!,dispute_unauthorised,T1003,open_dispute,open_dispute,0,17,
+WM-10326,2026-08-30,email,C008,any update on my dispute please,dispute_status,T8001,inform,inform,0,4,
+WM-10327,2026-08-11,email,C004,Can you refund the fee on my account?,verification_blocked,,escalate:verification,escalate:verification,0,8,
+WM-10328,2026-09-30,app,C002,please reverse my late payment fee,fee_refund_repeat,T2001,decline:FEE-2,decline:FEE-2,0,10,
+WM-10329,2026-08-16,chat,C007,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,9,
+WM-10330,2026-08-26,app,C001,"I want to dispute the SoundWave Online charge, the order never came.",dispute_merchant_not_contacted,T1004,decline:DSP-3,decline:DSP-3,0,9,contacted_merchant=False
+WM-10331,2026-09-30,app,C004,I want to close my account and transfer my balance out,oos_close_account,,human:account_closure,human:account_closure,0,12,
+WM-10332,2026-09-29,email,C006,Someone is controlling my finances and I feel unsafe.,vulnerability,,escalate:care,escalate:care,0,28,
+WM-10333,2026-09-02,email,C007,"I was tricked into transferring $2,000.00 by a caller claiming to be the police.",scam_transfer,T7002,open_dispute,escalate:scams,1,31,
+WM-10334,2026-09-10,app,C001,Can you get my $249.00 back from SoundWave Online? It never arrived.,dispute_merchant_not_contacted,T1004,decline:DSP-3,decline:DSP-3,0,7,contacted_merchant=False
+WM-10335,2026-08-19,chat,C006,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,10,
+WM-10336,2026-11-03,chat,C006,I'd like to raise my card limit,oos_credit_limit,,human:credit_limit,human:credit_limit,0,16,
+WM-10337,2026-08-30,email,C006,"I need to dispute the $6,200.00 Northside Electronics purchase, it's faulty and they refused to help.",dispute_large,T6001,escalate:disputes,escalate:disputes,0,22,contacted_merchant=True
+WM-10338,2026-09-21,email,C010,"My StreamFlix purchase ($16.99) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T10002,open_dispute,open_dispute,0,20,contacted_merchant=True
+WM-10339,2026-09-14,app,C008,any update on my dispute please,dispute_status,T8001,inform,inform,0,4,
+WM-10340,2026-09-03,email,C001,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,5,
+WM-10341,2026-09-25,email,C010,Please close my account.,oos_close_account,,human:account_closure,human:account_closure,0,11,
+WM-10342,2026-09-28,email,C010,Please close my account.,oos_close_account,,human:account_closure,human:account_closure,0,13,
+WM-10343,2026-09-28,app,C009,locked out of online banking,oos_app_login,,human:app_access,human:app_access,0,3,
+WM-10344,2026-08-16,app,C010,refund my late payment fee from August please,fee_refund_old,T10001,refund_fee,decline:FEE-5,1,5,
+WM-10345,2026-11-04,email,C004,I want to close my account and transfer my balance out,oos_close_account,,human:account_closure,human:account_closure,0,9,
+WM-10346,2026-10-23,app,C001,How much is the overseas transaction fee?,info_fees,,inform,inform,0,3,
+WM-10347,2026-09-13,app,C003,Take the late payment fee off please.,fee_refund_collections,T3001,decline:FEE-4,decline:FEE-4,0,7,
+WM-10348,2026-10-22,chat,C002,please reverse my late payment fee,fee_refund_repeat,T2001,decline:FEE-2,decline:FEE-2,0,8,
+WM-10349,2026-10-28,chat,C008,has my GymCo claim been sorted yet,dispute_status,T8001,inform,inform,0,4,
+WM-10350,2026-09-20,email,C006,What's the late payment fee?,info_fees,,inform,inform,0,3,
+WM-10351,2026-08-17,email,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10352,2026-10-30,email,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10353,2026-09-07,email,C010,"There's an old late payment fee on my account from a while back, can I have it refunded?",fee_refund_old,T10001,decline:FEE-5,decline:FEE-5,0,6,
+WM-10354,2026-10-27,chat,C010,Can you get my $16.99 back from StreamFlix? It never arrived.,dispute_merchant_not_contacted,T10002,decline:DSP-3,decline:DSP-3,0,7,contacted_merchant=False
+WM-10355,2026-09-03,chat,C003,"I'm struggling to pay my card this month, what can I do?",hardship,,escalate:hardship,escalate:hardship,0,13,
+WM-10356,2026-09-20,email,C001,"My new card still hasn't arrived, it's been two weeks.",oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,11,
+WM-10357,2026-08-28,email,C002,Someone has used my card at FitLife Gym!,dispute_unauthorised,T2002,open_dispute,open_dispute,0,23,
+WM-10358,2026-09-11,email,C002,I don't recognise a FitLife Gym charge of $59.00.,dispute_unauthorised,T2002,open_dispute,open_dispute,0,11,
+WM-10359,2026-09-30,chat,C006,"Staywell Stays charged me twice, one is still pending, can you remove the duplicate?",dispute_pending,T6002,decline:DSP-4,decline:DSP-4,0,6,
+WM-10360,2026-10-24,chat,C001,"My Bali Surf Co purchase ($114.00) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T1005,open_dispute,open_dispute,0,14,contacted_merchant=True
+WM-10361,2026-10-05,chat,C002,I'd like the $15.00 late payment fee refunded,fee_refund_repeat,T2001,decline:FEE-2,decline:FEE-2,0,10,
+WM-10362,2026-08-16,app,C001,Bali Surf Co refused to refund me for an order that never came. I'd like a chargeback.,dispute_merchant_ok,T1005,open_dispute,open_dispute,0,17,contacted_merchant=True
+WM-10363,2026-10-02,app,C008,any update on my dispute please,dispute_status,T8001,inform,inform,0,6,
+WM-10364,2026-08-31,chat,C007,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,9,
+WM-10365,2026-09-16,chat,C010,put me through to a human please,human_request,,escalate:general,escalate:general,0,6,
+WM-10366,2026-10-24,chat,C010,put me through to a human please,human_request,,escalate:general,escalate:general,0,5,
+WM-10367,2026-09-19,app,C003,Take the late payment fee off please.,fee_refund_collections,T3001,decline:FEE-4,decline:FEE-4,0,6,
+WM-10368,2026-10-24,chat,C004,Can you refund the fee on my account?,verification_blocked,,escalate:verification,escalate:verification,0,9,
+WM-10369,2026-09-06,chat,C010,I've contacted StreamFlix twice about my $16.99 order and they've ignored me. I want to dispute it.,dispute_merchant_ok,T10002,open_dispute,open_dispute,0,22,contacted_merchant=True
+WM-10370,2026-08-12,email,C001,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,7,
+WM-10371,2026-09-14,email,C006,What's the late payment fee?,info_fees,,inform,inform,0,3,
+WM-10372,2026-10-01,app,C001,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,7,
+WM-10373,2026-09-27,chat,C001,"hi, any chance of getting the overseas transaction fee ($3.42) waived?",fee_refund_ok,T1001,refund_fee,refund_fee,0,4,confirms=True
+WM-10374,2026-08-15,chat,C001,SoundWave Online refused to refund me for an order that never came. I'd like a chargeback.,dispute_merchant_ok,T1004,open_dispute,open_dispute,0,13,contacted_merchant=True
+WM-10375,2026-08-23,email,C006,"I need to dispute the $6,200.00 Northside Electronics purchase, it's faulty and they refused to help.",dispute_large,T6001,escalate:disputes,escalate:disputes,0,19,contacted_merchant=True
+WM-10376,2026-08-22,app,C001,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,5,
+WM-10377,2026-09-21,chat,C001,How much is the overseas transaction fee?,info_fees,,inform,inform,0,2,
+WM-10378,2026-10-24,email,C010,"I want to dispute the StreamFlix charge, the order never came.",dispute_merchant_not_contacted,T10002,decline:DSP-3,decline:DSP-3,0,10,contacted_merchant=False
+WM-10379,2026-10-09,email,C007,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,6,
+WM-10380,2026-10-30,app,C010,put me through to a human please,human_request,,escalate:general,escalate:general,0,5,
+WM-10381,2026-10-28,chat,C006,I'd like to raise my card limit,oos_credit_limit,,human:credit_limit,human:credit_limit,0,16,
+WM-10382,2026-09-26,chat,C007,"My PetPal Supplies purchase ($75.00) has a problem and the merchant won't sort it out, I've emailed them.",dispute_merchant_ok,T7003,open_dispute,open_dispute,0,19,contacted_merchant=True
+WM-10383,2026-08-08,email,C010,Can I talk to a real person?,human_request,,escalate:general,escalate:general,0,6,
+WM-10384,2026-10-17,app,C002,please reverse my late payment fee,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,6,
+WM-10385,2026-10-14,chat,C010,where is my replacement card?,oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,8,
+WM-10386,2026-10-21,email,C003,"I'm struggling to pay my card this month, what can I do?",hardship,,escalate:hardship,escalate:hardship,0,26,
+WM-10387,2026-08-07,email,C001,"I got charged a overseas transaction fee, can it be reversed this once?",fee_refund_ok,T1001,refund_fee,refund_fee,0,6,confirms=True
+WM-10388,2026-09-06,app,C001,"I want to dispute the SoundWave Online charge, the order never came.",dispute_merchant_not_contacted,T1004,decline:DSP-3,decline:DSP-3,0,7,contacted_merchant=False
+WM-10389,2026-09-03,chat,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,7,confirms=True
+WM-10390,2026-09-03,email,C005,I want to dispute a charge on my card.,verification_blocked,,escalate:verification,escalate:verification,0,6,
+WM-10391,2026-08-16,app,C001,I don't recognise a Greengrocer Lane charge of $63.20.,dispute_unauthorised,T1006,open_dispute,open_dispute,0,14,
+WM-10392,2026-11-01,chat,C007,"I've moved house, how do I update my address?",oos_address_change,,human:profile_update,human:profile_update,0,8,
+WM-10393,2026-09-26,app,C001,QuickBite Delivery took $42.10 from my card and it wasn't me,dispute_unauthorised,T1003,open_dispute,open_dispute,0,7,
+WM-10394,2026-09-18,chat,C001,Someone has used my card at QuickBite Delivery!,dispute_unauthorised,T1003,open_dispute,open_dispute,0,11,
+WM-10395,2026-08-24,email,C001,"My new card still hasn't arrived, it's been two weeks.",oos_card_not_arrived,,human:card_delivery,human:card_delivery,0,8,
+WM-10396,2026-10-15,email,C001,please change my address,oos_address_change,,human:profile_update,human:profile_update,0,5,
+WM-10397,2026-08-15,email,C002,Can you waive the late payment fee again please?,fee_refund_repeat,T2001,refund_fee,decline:FEE-2,1,6,
+WM-10398,2026-10-08,email,C001,"Please remove the overseas transaction fee from my account, thanks",fee_refund_ok,T1001,refund_fee,refund_fee,0,9,confirms=True
+WM-10399,2026-08-12,chat,C009,The app keeps logging me out.,oos_app_login,,human:app_access,human:app_access,0,11,

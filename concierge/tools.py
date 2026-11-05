@@ -32,7 +32,9 @@ TOOL_SCHEMAS = [
     {
         "name": "search_policy",
         "description": "Search Wattle Money's support policy. Returns matching policy lines with their IDs for citation.",
-        "input_schema": {"type": "object", "properties": {"query": {"type": "string"}}, "required": ["query"]},
+        "input_schema": {"type": "object", "properties": {"query": {"type": "string"},
+                                                          "section": {"type": "string", "description": "optional ID prefix, e.g. INF for customer-facing info"}},
+                         "required": ["query"]},
     },
     {
         "name": "refund_fee",
@@ -115,8 +117,8 @@ class Toolbox:
                     "message": "I need to pass this to our Verification team before I can help with transactions on this account."}
         return {"status": "ok", "transactions": [asdict(t) for t in self.bank.txns_for(self.customer_id)]}
 
-    def _t_search_policy(self, query: str) -> dict:
-        return {"status": "ok", "results": policy.search(query)}
+    def _t_search_policy(self, query: str, section: str = "") -> dict:
+        return {"status": "ok", "results": policy.search(query, prefix=section)}
 
     # -- write tools (pockets of determinism) ------------------------------------
     def _t_refund_fee(self, txn_id: str | None, amount: float | None = None, reason: str = "") -> dict:

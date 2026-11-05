@@ -34,15 +34,19 @@ from concierge.guardrails import BANNED_PHRASES, INTERNAL_SIGNALS  # noqa: E402
 from concierge.models import get_model  # noqa: E402
 from concierge.simulator import SimulatedCustomer  # noqa: E402
 
-# Order matters for the report. "holdout_v1" was unseen for model v1; its failures were then
-# studied to build v2, so for v2 it counts as development data. "holdout_v2" was written and
-# committed before any v2 code (see git log).
+# Order matters for the report. Each holdout was written and committed before the model change it
+# tests (see git log), scored once, then becomes development data for the next change:
+#   holdout_v1 -> scored v1 (regex NLU), then used to build v2
+#   holdout_v2 -> scored v2 (kNN NLU + multi-turn), then seen while fixing shadow-replay bugs
+#   holdout_v3 -> scored v3 (shadow-replay fixes)
 SETS = {
     "dev": ROOT / "evals" / "tickets_dev.jsonl",
     "holdout_v1": ROOT / "evals" / "tickets_holdout.jsonl",
     "holdout_v2": ROOT / "evals" / "tickets_holdout2.jsonl",
+    "holdout_v3": ROOT / "evals" / "tickets_holdout3.jsonl",
 }
-SET_NOTES = {"dev": "tuned on", "holdout_v1": "seen (used to build v2)", "holdout_v2": "unseen until scored"}
+SET_NOTES = {"dev": "tuned on", "holdout_v1": "seen: used to build v2", "holdout_v2": "unseen by v2; seen by v3",
+             "holdout_v3": "unseen until scored"}
 
 
 def load(which: str = "all") -> list[dict]:

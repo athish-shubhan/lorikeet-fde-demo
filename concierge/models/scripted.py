@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import re
 
-from ..nlu import DISPUTE_KNN, Understanding, understand
+from ..nlu import DISPUTE_KNN, Understanding, parse_contacted, understand
 from ..workflows import is_affirmative
 from .base import Final, ToolCall
 
@@ -125,7 +125,7 @@ class ScriptedModel:
             return
 
         if u.intent == "info":
-            res = yield ToolCall("search_policy", {"query": self.ticket})
+            res = yield ToolCall("search_policy", {"query": self.ticket, "section": "INF"})
             hits = [h for h in res.get("results", []) if h["policy_ref"].startswith("INF")]
             if not hits:
                 yield from self._escalate("general", "ESC-5")
@@ -150,6 +150,8 @@ class ScriptedModel:
         if u.intent == "dispute_status":
             disputed = [x for x in txns if x.get("dispute")]
             target = match_txn(self.ticket, disputed, u, {"card"}) if disputed else None
+            if target is None and len(disputed) == 1:  # read-only: their only open dispute is safe to report
+                target = disputed[0]
             if target is None:
                 yield from self._escalate("general", "ESC-5")
                 return
@@ -219,7 +221,7 @@ class ScriptedModel:
                 merchant = (target or {}).get("merchant", "the merchant")
                 reply = yield Final("ask", f"Have you already been in touch with {merchant} to try to sort this out? "
                                     "Merchants can often fix it directly. [DSP-3]", {"type": "merchant_contacted"})
-                args = {**args, "merchant_contacted": is_affirmative((reply or {}).get("customer_reply", ""))}
+                args = {**args, "merchant_contacted": parse_contacted((reply or {}).get("customer_reply", ""))}
                 continue
             if status == "conditions_not_met":
                 kind = "inform" if res.get("failed_gate") == "no_existing_dispute" else "decline"

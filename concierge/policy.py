@@ -25,12 +25,25 @@ def policy_text() -> str:
     return POLICY_PATH.read_text(encoding="utf-8")
 
 
-def search(query: str, k: int = 3) -> list[dict]:
-    """Naive keyword search over policy lines (the 'fully agentic' knowledge lookup)."""
-    words = {w for w in re.findall(r"[a-z]+", query.lower()) if len(w) > 2}
+SYNONYMS = {"abroad": "overseas", "travelling": "overseas", "traveling": "overseas", "international": "overseas",
+            "foreign": "overseas", "charge": "fee", "charges": "fee", "cost": "fee", "costs": "fee", "fees": "fee",
+            "late": "late", "long": "timeline", "take": "timeline", "resolve": "resolved", "disputes": "dispute"}
+_GENERIC = {"card", "account", "customer", "the", "and", "for", "you", "your", "our"}
+
+
+def _terms(text: str) -> set[str]:
+    return {SYNONYMS.get(w, w) for w in re.findall(r"[a-z]+", text.lower()) if len(w) > 2 and w not in _GENERIC}
+
+
+def search(query: str, k: int = 3, prefix: str = "") -> list[dict]:
+    """Keyword search over policy lines (the 'fully agentic' knowledge lookup), with light synonyms.
+    `prefix` restricts to a section (e.g. "INF" for customer-facing information)."""
+    words = _terms(query)
     scored = []
     for pid, text in policy_lines().items():
-        overlap = len(words & set(re.findall(r"[a-z]+", text.lower())))
+        if prefix and not pid.startswith(prefix):
+            continue
+        overlap = len(words & (_terms(text) | ({"timeline"} if "timeline" in text.lower() else set())))
         if overlap:
             scored.append((overlap, pid, text))
     scored.sort(key=lambda s: (-s[0], s[1]))

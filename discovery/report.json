@@ -1,0 +1,261 @@
+{
+ "n": 400,
+ "auto": 223,
+ "auto_correct": 223,
+ "auto_minutes": 1825,
+ "routed": 177,
+ "routed_right": 170,
+ "unsafe": 0,
+ "flags": 30,
+ "seeded": 30,
+ "caught": 30,
+ "false_flags": 0,
+ "flag_examples": [
+  {
+   "ticket_id": "WM-10005",
+   "message": "Can I get the late payment fee refunded?",
+   "human_resolution": "refund_fee",
+   "concierge": "decline",
+   "concierge_cites": [
+    "FEE-4"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10013",
+   "message": "I'd like the $15.00 late payment fee refunded",
+   "human_resolution": "refund_fee",
+   "concierge": "decline",
+   "concierge_cites": [
+    "FEE-2"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10024",
+   "message": "please reverse my late payment fee",
+   "human_resolution": "refund_fee",
+   "concierge": "decline",
+   "concierge_cites": [
+    "FEE-2"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10035",
+   "message": "please reverse my late payment fee",
+   "human_resolution": "refund_fee",
+   "concierge": "decline",
+   "concierge_cites": [
+    "FEE-2"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10041",
+   "message": "Take the late payment fee off please.",
+   "human_resolution": "refund_fee",
+   "concierge": "decline",
+   "concierge_cites": [
+    "FEE-4"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10094",
+   "message": "I'd like the $15.00 late payment fee refunded",
+   "human_resolution": "refund_fee",
+   "concierge": "decline",
+   "concierge_cites": [
+    "FEE-2"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10095",
+   "message": "I want to dispute a Vintage Threads order from months ago that never arrived. The seller won't reply.",
+   "human_resolution": "open_dispute",
+   "concierge": "decline",
+   "concierge_cites": [
+    "DSP-2"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10100",
+   "message": "Can you waive the late payment fee again please?",
+   "human_resolution": "refund_fee",
+   "concierge": "decline",
+   "concierge_cites": [
+    "FEE-2"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10111",
+   "message": "I want to dispute the StreamFlix charge, the order never came.",
+   "human_resolution": "open_dispute",
+   "concierge": "decline",
+   "concierge_cites": [
+    "DSP-3"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10126",
+   "message": "Can you waive the late payment fee again please?",
+   "human_resolution": "refund_fee",
+   "concierge": "decline",
+   "concierge_cites": [
+    "FEE-2"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10130",
+   "message": "I want to dispute the StreamFlix charge, the order never came.",
+   "human_resolution": "open_dispute",
+   "concierge": "decline",
+   "concierge_cites": [
+    "DSP-3"
+   ],
+   "seeded_human_error": "1"
+  },
+  {
+   "ticket_id": "WM-10140",
+   "message": "Take the late payment fee off please.",
+   "human_resolution": "refund_fee",
+   "concierge": "decline",
+   "concierge_cites": [
+    "FEE-4"
+   ],
+   "seeded_human_error": "1"
+  }
+ ],
+ "deviation_kinds": [
+  [
+   "human refund_fee vs policy decline",
+   19
+  ],
+  [
+   "human open_dispute vs policy decline",
+   7
+  ],
+  [
+   "human decline vs policy escalate:hardship",
+   2
+  ],
+  [
+   "human refund_fee vs policy escalate:team_lead",
+   1
+  ],
+  [
+   "human open_dispute vs policy escalate:scams",
+   1
+  ]
+ ],
+ "gaps": {
+  "app_access": {
+   "tickets": 30,
+   "minutes": 318
+  },
+  "card_delivery": {
+   "tickets": 28,
+   "minutes": 255
+  },
+  "profile_update": {
+   "tickets": 22,
+   "minutes": 154
+  },
+  "credit_limit": {
+   "tickets": 16,
+   "minutes": 204
+  },
+  "account_closure": {
+   "tickets": 13,
+   "minutes": 132
+  }
+ },
+ "by_type": {
+  "human": {
+   "n": 109,
+   "auto": 0,
+   "correct": 0,
+   "minutes": 1063
+  },
+  "decline": {
+   "n": 85,
+   "auto": 85,
+   "correct": 85,
+   "minutes": 576
+  },
+  "open_dispute": {
+   "n": 58,
+   "auto": 58,
+   "correct": 58,
+   "minutes": 837
+  },
+  "refund_fee": {
+   "n": 53,
+   "auto": 53,
+   "correct": 53,
+   "minutes": 320
+  },
+  "inform": {
+   "n": 27,
+   "auto": 27,
+   "correct": 27,
+   "minutes": 92
+  },
+  "escalate:general": {
+   "n": 13,
+   "auto": 0,
+   "correct": 0,
+   "minutes": 66
+  },
+  "escalate:team_lead": {
+   "n": 12,
+   "auto": 0,
+   "correct": 0,
+   "minutes": 102
+  },
+  "escalate:hardship": {
+   "n": 12,
+   "auto": 0,
+   "correct": 0,
+   "minutes": 256
+  },
+  "escalate:complaints": {
+   "n": 12,
+   "auto": 0,
+   "correct": 0,
+   "minutes": 238
+  },
+  "escalate:verification": {
+   "n": 11,
+   "auto": 0,
+   "correct": 0,
+   "minutes": 102
+  },
+  "escalate:care": {
+   "n": 3,
+   "auto": 0,
+   "correct": 0,
+   "minutes": 85
+  },
+  "escalate:scams": {
+   "n": 3,
+   "auto": 0,
+   "correct": 0,
+   "minutes": 62
+  },
+  "escalate:disputes": {
+   "n": 2,
+   "auto": 0,
+   "correct": 0,
+   "minutes": 41
+  }
+ },
+ "days": 90,
+ "wrong_auto": []
+}
