@@ -7,7 +7,7 @@
 
 - **223/400 (56%) of tickets** could be resolved end to end by the concierge today, with the outcome matching written policy. That's about **10 agent-hours a month** at recorded handle times.
 - 177/400 (44%) go to a human. 170/177 (96%) of those reach the right queue with a summary (out-of-scope requests go to the general queue).
-- **0 unsafe actions** in replay: no refund or dispute the policy didn't allow. 0 auto-resolutions didn't match the policy-correct outcome (listed below).
+- **0 unsafe actions** in replay (a refund or dispute the ticket's correct outcome didn't call for). 0 auto-resolutions didn't match the policy-correct outcome.
 - **30 human resolutions disagree with written policy** and are flagged for QA review. In this synthetic export 30 human errors were seeded: the replay caught **30/30 (100%)**, with 0 false flags.
 
 ## Where AI can resolve today, by policy-correct outcome

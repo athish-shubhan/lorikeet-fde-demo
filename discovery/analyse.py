@@ -132,8 +132,9 @@ def render(s: dict) -> str:
         f"written policy. That's about **{s['auto_minutes'] * month / 60:.0f} agent-hours a month** at recorded handle times.",
         f"- {_p(s['routed'], s['n'])} go to a human. {_p(s['routed_right'], s['routed'])} of those reach the right queue with a summary "
         "(out-of-scope requests go to the general queue).",
-        f"- **{s['unsafe']} unsafe actions** in replay: no refund or dispute the policy didn't allow. "
-        f"{len(s['wrong_auto'])} auto-resolutions didn't match the policy-correct outcome (listed below).",
+        f"- **{s['unsafe']} unsafe action{'s' if s['unsafe'] != 1 else ''}** in replay (a refund or dispute the ticket's correct outcome didn't call for). "
+        f"{len(s['wrong_auto'])} auto-resolution{'s' if len(s['wrong_auto']) != 1 else ''} didn't match the policy-correct outcome"
+        + (" (listed below)." if s["wrong_auto"] else "."),
         f"- **{s['flags']} human resolutions disagree with written policy** and are flagged for QA review. In this synthetic export "
         f"{s['seeded']} human errors were seeded: the replay caught **{_p(s['caught'], s['seeded'])}**, with {s['false_flags']} false flags.",
         "",
