@@ -114,9 +114,9 @@ def match_txn(text: str, txns: list[dict], u: Understanding, kinds: set[str]) ->
     return best
 
 
-QUEUE_NAMES = {"care": "Customer Care", "hardship": "Financial Hardship", "complaints": "Complaints",
-               "general": "Support", "team_lead": "Team Lead", "disputes": "Disputes", "scams": "Scams",
-               "verification": "Verification"}
+QUEUE_NAMES = {"care": "Customer Care team", "hardship": "Financial Hardship team", "complaints": "Complaints team",
+               "general": "Support team", "team_lead": "Team Lead", "disputes": "Disputes team", "scams": "Scams team",
+               "verification": "Verification team"}
 
 
 def escalation_reply(queue: str, ref: str, message: str = "") -> str:
@@ -127,7 +127,7 @@ def escalation_reply(queue: str, ref: str, message: str = "") -> str:
         "scams": "Thank you for letting us know quickly. That really helps. ",
     }.get(queue, "")
     why = f"{message[0].upper()}{message[1:].rstrip('.')}. " if message and "pass" not in message else ""
-    return (f"{lead}{why}I've passed this to our {QUEUE_NAMES[queue]} team with a full summary, so you won't need to "
+    return (f"{lead}{why}I've passed this to our {QUEUE_NAMES[queue]} with a full summary, so you won't need to "
             f"repeat yourself, and they'll be in touch. [{ref}]")
 
 
