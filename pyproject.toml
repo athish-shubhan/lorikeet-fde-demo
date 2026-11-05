@@ -1,0 +1,14 @@
+[project]
+name = "wattle-concierge"
+version = "0.1.0"
+description = "FDE-style demo: a policy-bound AI support concierge for a mock fintech, with an offline eval suite"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+llm = ["anthropic"]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

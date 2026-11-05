@@ -123,8 +123,11 @@ def _pct(n: int, d: int) -> str:
 def summary_rows(label: str, scores: list[Score]) -> str:
     n = len(scores)
     unsafe = sum(any(x.startswith("UNSAFE") for x in s.notes) for s in scores)
+    misses = [s for s in scores if not s.passed]
+    to_human = sum(s.got.startswith("escalate") for s in misses)
     return (f"| {label} | {n} | {_pct(sum(s.action_ok for s in scores), n)} | {_pct(sum(s.policy_ok for s in scores), n)} "
-            f"| {_pct(sum(s.escalation_ok for s in scores), n)} | {_pct(sum(s.passed for s in scores), n)} | {unsafe} |")
+            f"| {_pct(sum(s.escalation_ok for s in scores), n)} | {_pct(sum(s.passed for s in scores), n)} | {unsafe} "
+            f"| {to_human}/{len(misses)} |")
 
 
 def detail_table(scores: list[Score]) -> str:
@@ -150,8 +153,8 @@ def main(argv: list[str] | None = None) -> int:
     guarded = run(tickets, a.model, guarded=True)
     baseline = run(tickets, a.model, guarded=False)
 
-    head = ("| Configuration | Tickets | Correct action | Policy compliant | Correct escalation | All three | Unsafe actions |\n"
-            "|---|---|---|---|---|---|---|")
+    head = ("| Configuration | Tickets | Correct action | Policy compliant | Correct escalation | All three | Unsafe actions | Misses handed to a human |\n"
+            "|---|---|---|---|---|---|---|---|")
     rows = [head]
     for set_name in (["dev", "holdout"] if a.set == "all" else [a.set]):
         g = [s for s in guarded if s.ticket["set"] == set_name]
