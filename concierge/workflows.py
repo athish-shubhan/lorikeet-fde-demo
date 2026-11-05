@@ -11,10 +11,13 @@ There are two kinds of gate:
                conversation (e.g. "has the customer contacted the merchant?").
                These are recorded as agent-attested in the audit trail, because
                this is where an LLM's judgement enters the decision.
+  * transcript: checked against the conversation log the harness owns
+               (e.g. "did the customer say yes *after* the disclosure?").
 """
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Callable
@@ -40,9 +43,9 @@ class Gate:
     name: str
     policy_ref: str
     check: Callable[[Ctx], bool]
-    on_fail: str  # "decline" | "inform" | "escalate:<queue>"
+    on_fail: str  # "decline" | "inform" | "escalate:<queue>" | "ask:<type>"
     message: Callable[[Ctx], str]
-    kind: str = "rule"  # "rule" | "judgement"
+    kind: str = "rule"  # "rule" | "judgement" | "transcript"
 
 
 @dataclass
@@ -53,11 +56,14 @@ class WorkflowResult:
     queue: str | None = None
     failed_gate: str | None = None
     trace: list[dict] = field(default_factory=list)
+    ask: str | None = None  # the agent must ask the customer this before retrying
 
     def as_tool_result(self) -> dict:
         out = {"status": self.status, "policy_refs": self.policy_refs, "message": self.message}
         if self.queue:
             out["queue"] = self.queue
+        if self.ask:
+            out["ask"] = self.ask
         if self.failed_gate:
             out["failed_gate"] = self.failed_gate
         return out
@@ -75,12 +81,41 @@ class Workflow:
             ok = bool(g.check(ctx))
             trace.append({"gate": g.name, "policy_ref": g.policy_ref, "kind": g.kind, "passed": ok})
             if not ok:
+                ask = None
                 if g.on_fail.startswith("escalate:"):
                     status, queue = "escalation_required", g.on_fail.split(":", 1)[1]
                 else:
                     status, queue = "conditions_not_met", None
-                return WorkflowResult(status, [g.policy_ref], g.message(ctx), queue, g.name, trace)
+                    if g.on_fail.startswith("ask:"):
+                        ask = g.on_fail.split(":", 1)[1]
+                return WorkflowResult(status, [g.policy_ref], g.message(ctx), queue, g.name, trace, ask)
         return WorkflowResult("approved", list(self.approve_refs), "", None, None, trace)
+
+
+AFFIRM = re.compile(r"\b(yes|yeah|yep|yup|sure|ok|okay|please do|go ahead|do it|sounds good|that'?d be (great|good)|"
+                    r"confirm\w*|absolutely|definitely|please)\b", re.I)
+NEGATE = re.compile(r"\b(no|nah|nope|don'?t|do not|cancel|stop|wait|actually|never ?mind|not now|leave it|hold off)\b", re.I)
+
+
+def is_affirmative(text: str) -> bool:
+    """Deterministic yes/no reading of a customer reply. Anything ambiguous counts as *not* confirmed."""
+    return bool(AFFIRM.search(text)) and not NEGATE.search(text)
+
+
+def confirmed_in_transcript(transcript: list[dict], action: str, txn_id: str) -> bool:
+    """True only if the most recent agent turn asked to confirm *this* action, disclosed FEE-2,
+    and the customer's next message is an explicit yes."""
+    for i in range(len(transcript) - 1, -1, -1):
+        turn = transcript[i]
+        if turn["role"] != "agent":
+            continue
+        ask = turn.get("ask") or {}
+        if not (ask.get("type") == "confirm" and ask.get("action") == action and ask.get("txn_id") == txn_id
+                and "[FEE-2]" in turn["text"]):
+            return False
+        nxt = transcript[i + 1]["text"] if i + 1 < len(transcript) else ""
+        return is_affirmative(nxt)
+    return False
 
 
 def _days_since(iso: str) -> int:
@@ -128,6 +163,13 @@ FEE_REFUND = Workflow(
              lambda c: "we can only offer one goodwill fee refund in any 12-month period, and one has already been applied to your account"),
         Gate("within_concierge_limit", "FEE-3", lambda c: c.txn.amount <= FEE_LIMIT, "escalate:team_lead",
              lambda c: f"refunds over ${FEE_LIMIT:.0f} need a Team Lead to review"),
+        # Checked against the conversation transcript the harness owns, never against the agent's claim.
+        Gate("customer_confirmed_after_disclosure", "FEE-6",
+             lambda c: confirmed_in_transcript(c.args.get("transcript") or [], "refund_fee", c.txn.txn_id),
+             "ask:confirm",
+             lambda c: f"before refunding the ${c.txn.amount:.2f} {c.txn.description.split(' - ')[0].lower()}, disclose that it's a "
+                       "one-off goodwill refund (one per 12 months) and get the customer's explicit yes",
+             kind="transcript"),
     ],
     approve_refs=["FEE-1", "FEE-6"],
 )
@@ -153,6 +195,11 @@ DISPUTE = Workflow(
              lambda c: "I want to make sure this is handled correctly, so I'm passing it to a specialist", kind="judgement"),
         Gate("scam_routed_to_scams", "DSP-7", lambda c: c.args.get("dispute_type") != "scam", "escalate:scams",
              lambda c: "our Scams team handles this, as a priority", kind="judgement"),
+        Gate("merchant_contact_known", "DSP-3",
+             lambda c: c.args.get("dispute_type") not in MERCHANT_DISPUTE_TYPES or c.args.get("merchant_contacted") is not None,
+             "ask:merchant_contacted",
+             lambda c: f"ask whether the customer has already tried to resolve this with {c.txn.merchant}",
+             kind="judgement"),
         Gate("merchant_contacted_first", "DSP-3",
              lambda c: c.args.get("dispute_type") not in MERCHANT_DISPUTE_TYPES or c.args.get("merchant_contacted") is True,
              "decline",

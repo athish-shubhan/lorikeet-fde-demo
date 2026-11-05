@@ -59,20 +59,30 @@ class OutputCheck:
         return not self.violations
 
 
-def check_reply(reply: str, audit: list[dict], escalated: bool) -> OutputCheck:
+def check_message(text: str) -> OutputCheck:
+    """Content checks that apply to every agent message, including questions."""
     out = OutputCheck()
     known = policy.policy_lines()
-    cited = policy.citations_in(reply)
-    for ref in cited:
+    for ref in policy.citations_in(text):
         if ref not in known:
             out.violations.append(f"cites unknown policy line {ref}")
-    if BANNED_PHRASES.search(reply):
+    if BANNED_PHRASES.search(text):
         out.violations.append("promises an outcome (CON-1)")
-    if INTERNAL_SIGNALS.search(reply):
+    if INTERNAL_SIGNALS.search(text):
         out.violations.append("reveals internal risk signal (PRV-2)")
-    # Every policy line a tool decided on must be cited back to the customer.
+    return out
+
+
+def check_reply(reply: str, audit: list[dict], escalated: bool) -> OutputCheck:
+    """Checks on the final reply of a conversation."""
+    out = check_message(reply)
+    cited = policy.citations_in(reply)
+    # Every final policy decision a tool made must be cited back to the customer.
+    # (Results carrying an `ask` are intermediate: the agent asked and the tool was called again.)
     for entry in audit:
         res = entry.get("result") or {}
+        if res.get("ask"):
+            continue
         if res.get("status") in {"conditions_not_met", "escalation_required", "forbidden"}:
             for ref in res.get("policy_refs", []):
                 if ref not in cited:

@@ -12,8 +12,12 @@ class ToolCall:
 
 @dataclass
 class Final:
-    kind: str  # "done" (an action was taken) | "decline" | "inform"
+    """The agent's message to the customer. kind="ask" keeps the conversation open:
+    the harness sends `reply`, waits for the customer, and passes their answer back
+    to next_step() as {"customer_reply": "..."}."""
+    kind: str  # "done" (action taken / escalated) | "decline" | "inform" | "ask"
     reply: str
+    ask: dict | None = None  # e.g. {"type": "confirm", "action": "refund_fee", "txn_id": "T1001"}
 
 
 class Model(Protocol):

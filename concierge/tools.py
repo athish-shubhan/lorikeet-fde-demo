@@ -36,7 +36,7 @@ TOOL_SCHEMAS = [
     },
     {
         "name": "refund_fee",
-        "description": "Apply a goodwill refund for a fee. The tool checks policy itself and returns conditions_not_met or escalation_required if the refund isn't allowed.",
+        "description": "Apply a goodwill refund for a fee. The tool checks policy itself, including that your most recent message disclosed FEE-2 and asked for confirmation (final_answer kind=ask, ask.type=confirm) and the customer said yes. It returns conditions_not_met (with an `ask` hint) or escalation_required if the refund isn't allowed yet.",
         "input_schema": {
             "type": "object",
             "properties": {"txn_id": {"type": "string"}, "amount": {"type": "number"}, "reason": {"type": "string"}},
@@ -51,9 +51,9 @@ TOOL_SCHEMAS = [
             "properties": {
                 "txn_id": {"type": "string"},
                 "dispute_type": {"type": "string", "enum": ["unauthorised", "not_received", "not_as_described", "cancelled", "duplicate", "scam"]},
-                "merchant_contacted": {"type": "boolean", "description": "Has the customer already tried to resolve it with the merchant?"},
+                "merchant_contacted": {"type": "boolean", "description": "Has the customer already tried to resolve it with the merchant? Omit if you don't know: the tool will tell you to ask."},
             },
-            "required": ["txn_id", "dispute_type", "merchant_contacted"],
+            "required": ["txn_id", "dispute_type"],
         },
     },
     {
@@ -74,8 +74,9 @@ TOOL_SCHEMAS = [
 
 
 class Toolbox:
-    def __init__(self, bank: MockBank, customer_id: str, guarded: bool = True):
+    def __init__(self, bank: MockBank, customer_id: str, guarded: bool = True, transcript: list | None = None):
         self.bank = bank
+        self.transcript = transcript if transcript is not None else []  # owned by the harness
         self.customer_id = customer_id
         self.guarded = guarded
         self.audit: list[dict] = []
@@ -122,7 +123,7 @@ class Toolbox:
         acct = self.bank.accounts[self.customer_id]
         txn = self.bank.txns.get(txn_id) if txn_id else None
         if self.guarded:
-            wf = FEE_REFUND.run(Ctx(acct, txn, {"amount": amount}))
+            wf = FEE_REFUND.run(Ctx(acct, txn, {"amount": amount, "transcript": self.transcript}))
             self.audit.append({"workflow": FEE_REFUND.name, "trace": wf.trace})
             if wf.status != "approved":
                 return wf.as_tool_result()
@@ -137,7 +138,7 @@ class Toolbox:
         return {"status": "ok", "refunded": value, "txn_id": txn_id, "policy_refs": refs,
                 "message": f"refunded ${value:.2f}"}
 
-    def _t_open_dispute(self, txn_id: str, dispute_type: str, merchant_contacted: bool) -> dict:
+    def _t_open_dispute(self, txn_id: str, dispute_type: str, merchant_contacted: bool | None = None) -> dict:
         acct = self.bank.accounts[self.customer_id]
         txn = self.bank.txns.get(txn_id) if txn_id else None
         refs: list[str]
