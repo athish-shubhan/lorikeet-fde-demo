@@ -28,19 +28,20 @@ INTENTS: list[tuple[str, re.Pattern]] = [
     ("dispute_status", re.compile(r"\b(status|update|what'?s happening|any news|progress)\b.{0,60}\b(dispute|claim|case)\b", re.I)),
     ("scam", re.compile(r"\b(scam\w*|scammer|pretend\w*|impersonat\w*|said (they|he|she) (was|were) from)\b", re.I)),
     ("fee_refund", re.compile(
-        r"\b(refund|waive|reverse|remove|take off|credit back|get back)\b.{0,60}\bfees?\b|\bfees?\b.{0,60}\b(refund|waive\w*|reverse\w*|back|removed)\b"
+        r"\b(refund\w*|waive\w*|reverse\w*|remove\w*|take (it |that )?off|credit\w* back|get (it |that )?back)\b.{0,60}\bfees?\b"
+        r"|\bfees?\b.{0,80}\b(refund\w*|waive\w*|reverse\w*|remove\w*|take (it |that )?off|back)\b"
         r"|\brefund \$\d", re.I)),
     ("dispute", re.compile(
         r"\b(didn'?t make|did not make|never made|not mine|don'?t recogni[sz]e|someone (used|has|got)|stolen|"
         r"never (arrived|came|received)|hasn'?t arrived|not received|didn'?t (arrive|receive|get)|faulty|broken|not as described|"
-        r"cancel+ed|charged twice|double charged|duplicate|dispute|chargeback|not authori[sz]ed|unauthori[sz]ed)\b", re.I)),
+        r"cancel+ed|charged (me )?twice|double[- ]charged|duplicate|dispute|chargeback|not authori[sz]ed|unauthori[sz]ed)\b", re.I)),
     ("info", re.compile(r"^\s*(what|how much|how long|how do|when)\b", re.I)),
 ]
 
 DISPUTE_TYPE_RULES: list[tuple[str, re.Pattern]] = [
     ("scam", re.compile(r"\bscam|pretend|impersonat|said (they|he|she) (was|were) from", re.I)),
     ("unauthorised", re.compile(r"didn'?t make|did not make|never made|not mine|don'?t recogni|someone (used|has|got)|stolen|unauthori|not authori", re.I)),
-    ("duplicate", re.compile(r"charged twice|double charged|duplicate", re.I)),
+    ("duplicate", re.compile(r"charged (me )?twice|double[- ]charged|duplicate", re.I)),
     ("cancelled", re.compile(r"cancel", re.I)),
     ("not_received", re.compile(r"never (arrived|came|received)|hasn'?t arrived|not received|didn'?t (arrive|receive|get)", re.I)),
     ("not_as_described", re.compile(r"faulty|broken|not as described|damaged|doesn'?t work", re.I)),
@@ -102,7 +103,11 @@ def match_txn(text: str, txns: list[dict], u: Understanding, kinds: set[str]) ->
             score += 3
         if t["kind"] == "transfer" and u.intent == "scam":
             score += 2
-        if score > best_score:
+        # Judgement on ties: in a duplicate charge the extra one is the newest; otherwise
+        # prefer a settled charge (the money has actually left the account).
+        tie_wins = (score == best_score and best is not None and u.dispute_type != "duplicate"
+                    and t["status"] == "settled" and best["status"] != "settled")
+        if score > best_score or tie_wins:
             best, best_score = t, score
     if best is None and len([t for t in txns if t["kind"] in kinds]) == 1:
         best = next(t for t in txns if t["kind"] in kinds)
@@ -121,7 +126,7 @@ def escalation_reply(queue: str, ref: str, message: str = "") -> str:
         "complaints": "I'm sorry we've let you down. ",
         "scams": "Thank you for letting us know quickly. That really helps. ",
     }.get(queue, "")
-    why = f"{message[0].upper()}{message[1:]}. " if message else ""
+    why = f"{message[0].upper()}{message[1:].rstrip('.')}. " if message and "pass" not in message else ""
     return (f"{lead}{why}I've passed this to our {QUEUE_NAMES[queue]} team with a full summary, so you won't need to "
             f"repeat yourself, and they'll be in touch. [{ref}]")
 
