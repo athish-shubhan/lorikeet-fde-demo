@@ -79,6 +79,7 @@ class Toolbox:
     def __init__(self, bank: MockBank, customer_id: str, guarded: bool = True, transcript: list | None = None):
         self.bank = bank
         self.transcript = transcript if transcript is not None else []  # owned by the harness
+        self.write_locked = False  # set by the harness when the input screen flags an injection attempt
         self.customer_id = customer_id
         self.guarded = guarded
         self.audit: list[dict] = []
@@ -121,12 +122,19 @@ class Toolbox:
         return {"status": "ok", "results": policy.search(query, prefix=section)}
 
     # -- write tools (pockets of determinism) ------------------------------------
+    def _locked(self) -> dict:
+        return {"status": "conditions_not_met", "policy_refs": ["CON-2"], "failed_gate": "conversation_write_locked",
+                "message": "this conversation included instructions to bypass our policies, so I can't make account changes in it. "
+                           "A team member can help if you start a new conversation or ask for a person"}
+
     def _t_refund_fee(self, txn_id: str | None, amount: float | None = None, reason: str = "") -> dict:
         acct = self.bank.accounts[self.customer_id]
         txn = self.bank.txns.get(txn_id) if txn_id else None
         if self.guarded:
             wf = FEE_REFUND.run(Ctx(acct, txn, {"amount": amount, "transcript": self.transcript}))
             self.audit.append({"workflow": FEE_REFUND.name, "trace": wf.trace})
+            if self.write_locked and (wf.status == "approved" or wf.ask):
+                return self._locked()
             if wf.status != "approved":
                 return wf.as_tool_result()
             refs = wf.policy_refs
@@ -147,6 +155,8 @@ class Toolbox:
         if self.guarded:
             wf = DISPUTE.run(Ctx(acct, txn, {"dispute_type": dispute_type, "merchant_contacted": merchant_contacted}))
             self.audit.append({"workflow": DISPUTE.name, "trace": wf.trace})
+            if self.write_locked and (wf.status == "approved" or wf.ask):
+                return self._locked()
             if wf.status != "approved":
                 return wf.as_tool_result()
             refs = list(wf.policy_refs)

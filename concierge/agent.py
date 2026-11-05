@@ -59,7 +59,8 @@ def handle_ticket(text: str, customer_id: str, model=None, guarded: bool = True,
             return None
         s = guardrails.input_screen(msg)
         if s.injection:
-            events.append("input screen: possible prompt injection flagged (CON-2)")
+            tools.write_locked = True
+            events.append("input screen: possible prompt injection flagged (CON-2) -> write tools locked for this conversation")
         if s.forced:
             reason, queue, ref = s.forced
             return escalate(queue, ref, f"input screen: {reason} -> forced escalation to {queue} ({ref})")

@@ -27,9 +27,13 @@ FORCED_ESCALATIONS: list[tuple[str, str, str, re.Pattern]] = [
         r"\b(afca|ombudsman|formal complaint|lodge a complaint|legal action|my lawyer|sue you)\b", re.I)),
 ]
 
+# Well-known instruction-override phrasings. Not exhaustive (no regex is), which is why a flag
+# also *locks the write tools* for the conversation instead of just adding a warning.
 INJECTION = re.compile(
-    r"(ignore (all |any |your )?(previous |prior )?(instructions|polic(y|ies)|rules)|"
-    r"(admin|developer|god) mode|you are now|system prompt|override (the )?polic)", re.I)
+    r"(\b(ignore|disregard|forget|bypass|override)\b.{0,20}\b(instructions?|polic(y|ies)|rules|checks|guidelines)\b"
+    r"|\b(admin|developer|god|debug) mode\b|\byou are now\b|\bsystem (prompt|notice|message)\b|\bnew instructions?\b"
+    r"|\bas an ai\b.{0,30}\b(must|have to)\b|\byou must comply\b|\bpretend (you'?re|you are|to be)\b|\bact as\b"
+    r"|\b(approved|authori[sz]ed) by (a |the |your )?(manager|supervisor|compliance)\b|\bwithout (any )?checks\b|\bjailbreak)", re.I)
 
 BANNED_PHRASES = re.compile(r"\b(definitely|guarantee[sd]?|100% (sure|certain)|promise you)\b", re.I)  # CON-1
 # First-person claims that something was *done* ("I've refunded", "Done.", "Refunded!"), not mentions of the word.

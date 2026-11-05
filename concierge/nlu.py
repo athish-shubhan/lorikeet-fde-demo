@@ -182,6 +182,7 @@ KEYWORD_PRIORS: list[tuple[str, re.Pattern, float]] = [
 REQUEST_VERB = re.compile(r"\b(refund\w*|waive\w*|revers\w*|remov\w*|take (it |that |the \w+ )?off|taken off|credit\w*|"
                           r"get (it |that |the \w+ )?back|give (it )?back|have it back|money back)\b", re.I)
 MIN_MARGIN = 0.015
+DENIAL = re.compile(r"\b(didn'?t|did not|never) (order|buy|purchase|make|authori[sz]e|sign up)\b|\b(wasn'?t|was not|not) me\b", re.I)
 QUESTION = re.compile(r"^\s*(what|what's|how much|how long|how do|when|do you|does it|is there|are there)\b|\?\s*$", re.I)
 COST_OR_TIME = re.compile(r"\b(fees?|charges?|cost|costs|price|how long|how much|take to)\b", re.I)
 
@@ -226,6 +227,8 @@ def understand(text: str, session_customer: str) -> Understanding:
     u.amounts = [float((a or b).replace(",", "")) for a, b in AMOUNT.findall(text)]
     if intent in ("dispute", "scam"):
         u.dispute_type = "scam" if intent == "scam" else DISPUTE_KNN.scores(text)[0][0]
+        if intent == "dispute" and DENIAL.search(text):
+            u.dispute_type = "unauthorised"  # "I didn't order / buy / make this" is a denial, not a merchant problem
     if NOT_CONTACTED.search(text):
         u.merchant_contacted = False
     elif CONTACTED.search(text):
