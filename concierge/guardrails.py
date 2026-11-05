@@ -32,6 +32,9 @@ INJECTION = re.compile(
     r"(admin|developer|god) mode|you are now|system prompt|override (the )?polic)", re.I)
 
 BANNED_PHRASES = re.compile(r"\b(definitely|guarantee[sd]?|100% (sure|certain)|promise you)\b", re.I)  # CON-1
+# First-person claims that something was *done* ("I've refunded", "Done.", "Refunded!"), not mentions of the word.
+CLAIMS_ACTION = re.compile(r"\b(i'?ve|i have|we'?ve|we have) (just )?(refunded|credited|reversed|opened|raised|lodged|locked)\b"
+                           r"|^\s*(done|refunded|all sorted)\b", re.I)
 INTERNAL_SIGNALS = re.compile(r"\b(security hold|fraud (hold|flag|score)|risk (score|flag)|flagged for fraud)\b", re.I)  # PRV-2
 
 
@@ -73,10 +76,12 @@ def check_message(text: str) -> OutputCheck:
     return out
 
 
-def check_reply(reply: str, audit: list[dict], escalated: bool) -> OutputCheck:
+def check_reply(reply: str, audit: list[dict], escalated: bool, side_effects: list[dict] | None = None) -> OutputCheck:
     """Checks on the final reply of a conversation."""
     out = check_message(reply)
     cited = policy.citations_in(reply)
+    if CLAIMS_ACTION.search(reply) and not side_effects:
+        out.violations.append("reply claims an action that the system did not perform")
     # Every final policy decision a tool made must be cited back to the customer.
     # (Results carrying an `ask` are intermediate: the agent asked and the tool was called again.)
     for entry in audit:

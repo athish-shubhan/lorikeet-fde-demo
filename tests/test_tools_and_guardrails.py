@@ -60,6 +60,8 @@ def test_output_check_catches_problems():
     assert not guardrails.check_reply("Your account has a security hold [ESC-3]", [], False).ok     # PRV-2
     assert not guardrails.check_reply("See [ZZZ-9]", [], False).ok                                  # unknown ref
     assert guardrails.check_reply("Sorry, one per 12 months. [FEE-2]", audit, False).ok
+    assert not guardrails.check_reply("Refunded! [FEE-1]", [], False, side_effects=[]).ok                # claimed, not done
+    assert guardrails.check_reply("Refunded $15. [FEE-1]", [], False, side_effects=[{"type": "refund"}]).ok
     esc = [{"tool": "get_transactions", "result": {"status": "escalation_required", "queue": "verification", "policy_refs": ["ESC-3"]}}]
     assert not guardrails.check_reply("Here you go [ESC-3]", esc, escalated=False).ok             # skipped escalation
 

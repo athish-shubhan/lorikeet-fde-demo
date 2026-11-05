@@ -105,7 +105,7 @@ def handle_ticket(text: str, customer_id: str, model=None, guarded: bool = True,
     if guarded:
         if any("injection" in e for e in events) and "[CON-2]" not in reply:
             reply += " I can only help within our published policies. [CON-2]"
-        check = guardrails.check_reply(reply, tools.audit, escalated())
+        check = guardrails.check_reply(reply, tools.audit, escalated(), tools.side_effects)
         if not check.ok:
             events.extend(f"output check: {v}" for v in check.violations)
             if not escalated():

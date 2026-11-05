@@ -20,7 +20,7 @@ def run_dispute(bank, cust, txn, dtype, contacted):
 
 
 @pytest.mark.parametrize("cust,txn,status,ref", [
-    ("C001", "T1001", "approved", "FEE-1"),
+    ("C001", "T1001", "conditions_not_met", "FEE-6"),  # eligible, but not yet confirmed by the customer
     ("C002", "T2001", "conditions_not_met", "FEE-2"),    # refund within 12 months
     ("C009", "T9001", "escalation_required", "FEE-3"),   # $80 > $50 limit
     ("C003", "T3001", "conditions_not_met", "FEE-4"),    # in collections
@@ -69,3 +69,29 @@ def test_judgement_gates_are_marked_in_trace(bank):
     kinds = {g["gate"]: g["kind"] for g in r.trace}
     assert kinds["merchant_contacted_first"] == "judgement"
     assert kinds["within_120_days"] == "rule"
+
+
+def _confirm_transcript(txn_id, reply, disclosed=True):
+    text = "One-off goodwill refund, once per 12 months [FEE-2]. Go ahead? [FEE-6]" if disclosed else "Shall I refund it?"
+    return [{"role": "customer", "text": "refund my fee"},
+            {"role": "agent", "text": text, "ask": {"type": "confirm", "action": "refund_fee", "txn_id": txn_id}},
+            {"role": "customer", "text": reply}]
+
+
+@pytest.mark.parametrize("reply,disclosed,txn,ok", [
+    ("Yes please, go ahead.", True, "T1001", True),
+    ("yep", True, "T1001", True),
+    ("Actually no, leave it", True, "T1001", False),
+    ("hmm what do you mean", True, "T1001", False),     # ambiguous never counts as yes
+    ("Yes please", False, "T1001", False),             # yes, but FEE-2 was never disclosed
+    ("Yes please", True, "T1002", False),              # confirmed a different fee
+])
+def test_confirmation_is_checked_against_transcript(bank, reply, disclosed, txn, ok):
+    t = _confirm_transcript(txn, reply, disclosed)
+    r = run_fee(bank, "C001", "T1001", transcript=t)
+    assert (r.status == "approved") is ok
+
+
+def test_unknown_merchant_contact_makes_agent_ask(bank):
+    r = run_dispute(bank, "C001", "T1004", "not_received", None)
+    assert r.status == "conditions_not_met" and r.ask == "merchant_contacted"
