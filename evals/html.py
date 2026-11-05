@@ -94,7 +94,7 @@ select{font:inherit;font-size:13px;padding:5px 8px;border-radius:9px;border:1px 
 <div class="explorer"><div class="list" id="list"></div><div class="detail" id="detail"></div></div>
 <p class="legend">Gate chips: green = passed, red = the gate that decided. Dashed = judgement gate (uses the model's reading of the conversation).</p>
 
-<h2>Discovery: shadow replay on a 90-day ticket export</h2>
+<h2>Discovery: shadow replay on a synthetic 90-day ticket export</h2>
 <div class="tiles" id="dtiles"></div>
 <h2 style="font-size:16px">Where it can't yet</h2><div class="tw"><table id="gaps"></table></div>
 <h2 style="font-size:16px">Human deviations from written policy</h2><div class="tw"><table id="dev"></table></div>
