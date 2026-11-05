@@ -179,7 +179,7 @@ def to_json(scores: list[Score]) -> list[dict]:
     rows = []
     for s in scores:
         o = s.outcome
-        rows.append({"id": s.ticket["id"], "set": s.ticket["set"], "category": s.ticket["category"],
+        rows.append({"id": s.ticket["id"], "set": s.ticket["set"], "category": s.ticket["category"], "text": s.ticket["text"],
                      "customer": s.ticket["customer"], "expect": s.ticket["expect"], "got": s.got,
                      "action_ok": s.action_ok, "policy_ok": s.policy_ok, "escalation_ok": s.escalation_ok,
                      "passed": s.passed, "unsafe": s.unsafe, "notes": s.notes,

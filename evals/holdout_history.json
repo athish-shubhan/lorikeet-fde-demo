@@ -1,0 +1,6 @@
+[
+ {"model": "v1", "change": "regex NLU, single-turn", "holdout": "holdout_v1", "commit": "3bf7c59", "tickets": 10, "passed": 4, "unsafe": 0, "misses_to_human": "6/6", "note": "keyword rules don't generalise; every miss failed safe"},
+ {"model": "v2", "change": "TF-IDF kNN NLU with abstention, multi-turn, transcript-checked confirmation, ask-don't-guess gates", "holdout": "holdout_v2", "commit": "507ce8b", "tickets": 26, "passed": 24, "unsafe": 0, "misses_to_human": "2/2", "note": "X11 phone scam routed to Care not Scams; X22 overseas-fee question escalated"},
+ {"model": "v3", "change": "fixes for 5 bug classes found by shadow replay on 400 tickets", "holdout": "holdout_v3", "commit": "2849d96", "tickets": 20, "passed": 18, "unsafe": 1, "misses_to_human": "0/2", "note": "Y20 injection got one eligible fee refunded after customer said yes; Y06 'didn't order' treated as merchant dispute (card not locked)"},
+ {"model": "v3.1", "change": "injection flag locks write tools; precise denial rule", "holdout": "holdout_v4", "commit": "66c5ab7", "tickets": 16, "passed": 14, "unsafe": 0, "misses_to_human": "2/2", "note": "caveat: written right after reading v3's failures, so weaker evidence for those two fixes; Z03 and Z10 escalated"}
+]
