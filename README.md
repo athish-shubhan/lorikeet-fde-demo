@@ -1,4 +1,4 @@
-# Wattle Money Concierge: an FDE deployment, end to end (mock customer)
+# Wattle Money Concierge: a policy-gated support agent, deployed end to end (mock customer)
 
 > **Honesty note.** This is a portfolio project. "Wattle Money" is a fictional Australian neobank. Its customers,
 > transactions, support policy and 90-day ticket export are all invented by me. No real customer data is used.
@@ -6,7 +6,7 @@
 > model is a deterministic offline stand-in, so it runs with no API key. A `--model claude` adapter exists, but
 > **it has not been run against the live API**.
 
-**What this is:** the work an FDE does for one customer, compressed into a repo:
+**What this is:** a full customer deployment of a support agent, compressed into a repo:
 **discover** (mine their ticket export, size the opportunity, find policy gaps), **build** (turn their written
 policy into an agent that acts only inside it, asks when unsure, and hands off well), **evaluate** (simulated
 customers, fresh holdouts, a CI gate), and **hand over** (this document, plus questions only the customer can answer).
@@ -45,7 +45,7 @@ A bot that "usually follows the policy" isn't shippable here. The goal: **resolv
 
 ## 2. Week one: discovery on their tickets ([`discovery/report.md`](discovery/report.md))
 
-The first job is the one the FDE posting lists first: *"dig into customers' support tickets and data to find where AI can fully resolve queries, and where it can't yet."*
+The first job is discovery: dig into the customer's support tickets and data to find where AI can fully resolve queries, and where it can't yet.
 `discovery/generate.py` builds a synthetic stand-in for the CSV a customer hands over: 400 tickets over 90 days,
 with the resolution the human agent recorded and the handle time. `discovery/analyse.py` then **shadow-replays** every
 ticket through the concierge (fresh state, simulated customer, no side effects) and compares the outcomes.
@@ -206,4 +206,4 @@ python -m evals.run --model claude            # default claude-opus-5-5; overrid
 The adapter's multi-turn tool loop (including asks and parallel tool results) is covered by a stubbed-client test only.
 
 ---
-Built by Athish Shubhan as a proof of work for Lorikeet's Forward Deployed Engineer Intern role.
+Built by Athish Shubhan.
